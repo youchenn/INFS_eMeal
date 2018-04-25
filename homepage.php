@@ -28,6 +28,7 @@
                 <li><a href="magazines.html">BOX SIZE</a></li>
                 <li><a href="homepage.html">SHOPPING</a></li>
             </ul>
+<!--
             <div class="dropdown"><p>MENU</p>
                 <div class="dropdown-content">
                     <a href="homepage.html">HOME</a>
@@ -37,6 +38,7 @@
                     <a href="about.html">SHOPPING</a>
                 </div>
             </div>
+-->
             <form id="search-form" method="post" >
                 <input type="text" placeholder="Search Here" />
             </form>
