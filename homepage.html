@@ -27,12 +27,46 @@
             </div>
         </div>
         </div>
-      <form method="POST" action="LoginTest.php">
-        Login Information:<br>
-        Username: <input type="text" name="username" /><br>
-        Password: <input type="password" name="password"/><br>
-        <input type="submit" value="Submit" name="submit"/>
-        <input type="Reset" value="Reset" />
-      </form>
+        <div id="sign-page">
+            <section class="background">
+                <div id="log_bg"></div>
+                <div class="sign-card">
+                    <div class="container">
+                    <form method="POST" action="LoginTest.php">
+                        <div class="row">
+                            <div class="col">
+                        <p class="second-heading">Login</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p class="third-heading">Username
+                            </p>
+                        </div>
+                        <div class="row">
+                            <input class="login-input" type="text" name="username" placeholder="Please enter your username" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your username'"/>
+                        </div>
+                        <div class="row">
+                            <p class="third-heading">Password</p>
+                        </div>
+                        <div class="row">
+                            <input class="login-input" type="password" name="password" placeholder="Please enter your password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your password'"/>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input class="login-submit" type="submit" value="Submit" name="submit"/>
+                            </div>
+                            <div class="col">
+                                <input class="login-submit" type="Reset" value="Reset" />
+                            </div>
+                        </div>
+                    </form>
+                   </div>
+                </div>
+            </section>
+        </div>
+        <div id="footer">
+            <p>&copy;2018 eMeal Company. All Rights Reserved</p>
+        </div>
     </body>
 </html>

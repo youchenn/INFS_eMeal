@@ -13,10 +13,10 @@ $result = $con->query($query) or die($con->error);
 while($row = $result->fetch_assoc()) {
     if($password == $row['userPassword']){
   echo "Correct";
-}
+    }
 else {
   echo "Wrong!";
-}
+    }
 }
 
 ?>
