@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
+    <script src="jquery-1.11.1.min.js"></script>
 </head>
 <body>
     <div id="navigation">
@@ -24,8 +25,20 @@
         </div>
         <ul id="nav">
             <li class="active"><a href="">HOME</a>
-            <li><a href="">STYLE</a></li>
-            <li><a href="">PURPOSE</a></li>
+            <li><a href="">STYLE</a>
+                <ul class="subnav">
+                    <li><a href="#">Western</a></li>
+                    <li><a href="#">Chinese</a></li>
+                    <li><a href="#">Japanese</a></li>
+                </ul>
+            </li>
+            <li><a href="">PURPOSE</a>
+                <ul class="subnav">
+                    <li><a href="#">Fitness</a></li>
+                    <li><a href="#">Meat lover</a></li>
+                    <li><a href="#">Vegetarian</a></li>
+                </ul>
+            </li>
             <li><a href="">BOX SIZE</a></li>
             <li><a href="">SHOPPING</a></li>
         </ul>
@@ -33,5 +46,6 @@
             <input type="text" placeholder="Search Here" />
         </form>
     </div>
+
 </body>
 </html>
