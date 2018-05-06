@@ -1,17 +1,91 @@
 <!doctype html>
-	<html>
-		<body>
-			<form class="signup-form" action ="includes/signup.php" method="POST">
-	
-	
-				<input type="text" name="email" placeholder="E-mail">
-				<br>
-				<input type="text" name="nickname" placeholder="Nickname">
-				<br>
-				<input type="password" name="pwd" placeholder="Password">
-				<br>
-				<button type="submit" name="submit">Sign up</button>
-
-		</form>
-		</body>
-	</html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>eMeal-Sign Up</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
+    </head>
+    <body>
+        <div id="navigation">
+        <div id="title">
+            <div class="addthis_inline_share_toolbox_20fu"></div>
+            <p>e<span>MEAL</span></p>
+            <div id="sign">
+            <ul>
+                <li><a href="#">Sign in</a></li>
+                <li><a href="#">Sign up</a></li>
+            </ul>
+            </div>
+        </div>
+        <ul id="nav">
+            <li class="active"><a href="">HOME</a>
+            <li><a href="">STYLE</a>
+                <ul class="subnav">
+                    <li><a href="#">Western</a></li>
+                    <li><a href="#">Chinese</a></li>
+                    <li><a href="#">Japanese</a></li>
+                </ul>
+            </li>
+            <li><a href="">PURPOSE</a>
+                <ul class="subnav">
+                    <li><a href="#">Fitness</a></li>
+                    <li><a href="#">Meat lover</a></li>
+                    <li><a href="#">Vegetarian</a></li>
+                </ul>
+            </li>
+            <li><a href="">BOX SIZE</a></li>
+            <li><a href="">SHOPPING</a></li>
+        </ul>
+        <form id="search-form" method="post" >
+            <input type="text" placeholder="Search Here" />
+        </form>
+        </div>
+        <div id="sign-page">
+            <section class="background">
+                <div id="log_bg"></div>
+                <div class="sign-card">
+                    <div class="container">
+                        <form action ="includes/signup.php" method="POST">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="second-heading">Sign up</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <p class="third-heading">Email</p>
+                            </div>
+                            <div class="row">
+                                <input class="login-input" type="text" name="email" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your email address'">
+                            </div>
+                            <div class="row">
+                                    <p class="third-heading">Nickname</p>
+                            </div>
+                            <div class="row">
+                                <input class="login-input" type="text" name="nickname" placeholder="Nickname" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your nickname'">
+                            </div>
+                            <div class="row">
+                                    <p class="third-heading">Password</p>
+                            </div>
+                            <div class="row">
+                                <input class="login-input" type="password" name="pwd" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your password'">
+                            </div>
+                            <div class="row">
+                                    <button class="signup-submit" type="submit" name="submit">Sign up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="footer">
+            <p>&copy;2018 eMeal Company. All Rights Reserved</p>
+        </div>
+    </body>
+</html>
