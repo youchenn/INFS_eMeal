@@ -4,14 +4,10 @@
     list-style: none;
     font-family: 'Signika', sans-serif; 
 }
-html{
-    font-size: 14px;
 
-}
-/*
 @media only screen and (min-width:480px){
     html{
-    font-size: 20px;
+    font-size: 15px;
     }
 }
 
@@ -21,7 +17,6 @@ html{
         font-size: 10px;
     }
 }
-*/
 span{
     color: #f7ad18;
 }
