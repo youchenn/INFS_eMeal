@@ -393,6 +393,24 @@ span{
     text-decoration: none;
     color: white;
 }
+/*sign up page*/
+.signup-submit{
+    text-align: center;
+    width: 40%;
+    display: table;
+    margin: 0 auto;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 15px;
+    font-size: 1em;
+    background-color: white;
+    border: solid 1px #c8cccf;
+}
+
+.signup-submit:hover{
+    color: white;
+    background-color:#f7ad18;
+}
 
 .gray .recipe-box{
     background-color: white;
