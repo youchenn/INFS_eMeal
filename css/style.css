@@ -1,11 +1,13 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Signika', sans-serif; 
-    font-size: 14px;
     list-style: none;
+    font-family: 'Signika', sans-serif; 
 }
+html{
+    font-size: 14px;
 
+}
 /*
 @media only screen and (min-width:480px){
     html{
@@ -20,12 +22,12 @@
     }
 }
 */
-
-
 span{
     color: #f7ad18;
 }
-
+.clearfloat{
+    clear: both;
+}
 /* navigation bar */
 .active{
     color: #f7ad18;
@@ -245,51 +247,153 @@ span{
 /*banner*/
 .banner{
     width: 100%;
+    height: 400px;
     margin: 145px auto 20px auto;
-    border: solid 1px #808080;
     position:relative;
     overflow: hidden;
 }
 
-.banner .slider{
-    width: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-}
-
-.banner .slider img{
-    width: 100%;
-    height: 300px;
-}
-
-.banner .slider li{
-    float: left;
-}
-
-.banner .dot{
-    position: absolute;
-    width: 100%;
-    bottom: 10px;
-    left: 0px;
-    text-align: center;
-    font-size: 0px;
-}
-
-.banner .dot li{
-    width: 10px;
-    height: 10px;
-    background-color:#c8cccf;
-}
-
-.banner .dot li.on{
-    background-color:#f7ad18; 
-}
-
-
 .banner .btn{
-    
+    width: 50px;
+    height: 70px;
+    background-color: #808080;
+    opacity: 0.5;
+    filter:alpha(opacity(0.5));
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    font-size: 40px;
+    color: #fff;
+    display: none;
 }
 
-/*test*/
+.banner .btn_l{
+    left: 10px;
+}
 
+.banner .btn_r{
+    right: 10px;
+}
+
+.banner:hover .btn{
+    display: block;
+}
+
+.dotbar{
+    position:absolute; 
+    width:100%; 
+    bottom:10px; 
+    text-align:center; 
+}
+
+.dotbar .dot{
+    width:10px; 
+    height:10px; 
+    background-color:gainsboro; 
+    border-radius:50%;
+    display:inline-block; 
+    margin:0px 5px; 
+    cursor:pointer;
+}
+
+.dot dt{
+    background-color:#f7ad18;
+}
+
+.white{
+    margin-top: 80px;
+    width: 100%;
+    padding-bottom: 80px;
+}
+
+.gray{
+    margin-top: 80px;
+    padding-top: 50px;
+    padding-bottom: 80px;
+    background-color: #f4f4f4;
+}
+
+.title{
+    margin: 10px auto;
+    font-size: 2.4em;
+    text-align: center;
+}
+
+.subtitle{
+    font-size: 1em;
+    text-align: center;
+    color: #f4a80e;
+    letter-spacing: 3.5px;
+}
+
+.recipe-box{
+    width: 26%;
+    float: left;
+    margin-top:30px;
+    margin-left:5.5%;
+    position: relative;
+    background-color:#f4f4f4;
+    z-index: 1;
+    border-radius: 15px;
+}
+
+.autherbox{
+    position: absolute;
+    width: 120px;
+    text-align: center;
+    color: white;
+    padding: 5px;
+    background-color:#f7ad48;
+    top: -15px;
+    left: 10px;
+    z-index: 1;
+}
+.recipe-img{
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    vertical-align: middle;
+}
+
+.recipe-brief{
+    position: absolute;
+    padding: 20px 30px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    word-break:break-all;
+}
+
+.recipe-box:hover .recipe-img{
+    opacity: 0.8;
+    color: #fff;
+    background: rgba(0,0,0,0.9);
+}
+
+.recipe-btn{
+    z-index: 1;
+    background-color: #f7ad18;
+    color: white;
+    border-radius: 20px;
+    display: block;
+    text-align: center;
+    font-size: 1em;
+    width: 110px;
+    padding:12px;
+    margin: 80px auto 20px auto;
+    text-decoration: none;
+}
+
+.recipe-btn:hover{
+    background-color:#f29d00;
+    z-index: 2;
+    text-decoration: none;
+    color: white;
+}
+
+.gray .recipe-box{
+    background-color: white;
+}
