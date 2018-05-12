@@ -622,7 +622,7 @@ span{
     width: 65%;
     height: 100%;
     margin: 5% 10% auto auto;
-    float: right;
+    float: left;
     background-color: #f4f4f4;
     padding: 30px 90px;
 }
@@ -665,4 +665,20 @@ span{
 .accountinfo .infosave:hover{
     color: white;
     background-color:#f7ad18;
+}
+
+/*userProfile*/
+.accountinfo .showinfo{
+    width: 70%;
+    float: left;
+    vertical-align: middle;
+}
+
+.accountinfo td{
+    height: 40px;
+}
+
+.accountinfo .recipedata{
+    width: 20%;
+    float: left;
 }
