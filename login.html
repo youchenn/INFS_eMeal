@@ -52,7 +52,7 @@
                 <div id="log_bg"></div>
                 <div class="sign-card">
                     <div class="container">
-                    <form method="POST" action="LoginTest.php">
+                    <form class="signup-form" action ="includes/login.php" method="POST">
                         <div class="row">
                             <div class="col">
                         <p class="second-heading">Login</p>
@@ -63,21 +63,21 @@
                             </p>
                         </div>
                         <div class="row">
-                            <input class="login-input" type="text" name="username" placeholder="Please enter your username" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your username'"/>
+                            <input class="login-input" type="text" name="uid" placeholder="Please enter your username" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your username'"/>
                         </div>
                         <div class="row">
                             <p class="third-heading">Password</p>
                         </div>
                         <div class="row">
-                            <input class="login-input" type="password" name="password" placeholder="Please enter your password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your password'"/>
-                            
+                            <input class="login-input" type="password" name="pwd" placeholder="Please enter your password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your password'"/>
                         </div>
+                        <div class="row"><a href="#">Forget password</a></div>
                         <div class="row">
                             <div class="col">
                                 <input class="login-submit" type="submit" value="Submit" name="submit"/>
                             </div>
                             <div class="col">
-                                <input class="login-submit" type="Reset" value="Reset" />
+                                <input class="login-submit" type="Reset" value="Back" />
                             </div>
                         </div>
                     </form>

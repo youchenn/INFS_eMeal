@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 						//Insert the user into the database
 						$sql = "INSERT INTO `user` (`userId`, `userEmail`, `userPassword`, `userAddress`, `userPostalcode`, `userState`, `userContact`, `userNickname`, `userProfilepic`, `userBio`, `userGender`, `userDob`, `userOccupation`, `userRecipecount`, `userWebsite`, `userActivationCode`, `userEmailStatus`) VALUES (NULL, '$email', '$hashedPwd', NULL, NULL, NULL, NULL, '$uNickname', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$token', 'not verified');";
 						mysqli_query($conn, $sql);
-						header("Location: ../homepage.php?signup=success");
+						header("Location: ../homepage.html?signup=success");
 						exit();
 					}
 				}

@@ -24,6 +24,7 @@ if (isset($_POST['submit'])) {
 				if($row["userEmailStatus"] == 'verified'){
 					if(password_verify($pwd, $row["userPassword"])){
 						//return true;
+                        $_SESSION['user'] = $uid;
 						header("Location: ../homepage.php?login=success");
 					}
 					else{

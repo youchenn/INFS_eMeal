@@ -146,6 +146,38 @@ span{
     font: normal 12px Arial; 
 }
 
+#user{
+    display: block;
+    font-size: 1.2em;
+    float:left;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+}
+
+.subnav2{
+    width: 100%;
+    z-index: 199;
+    position: absolute;
+    left: 50; 
+    display: none;
+}
+
+.subnav2 li{
+    clear: both;
+    width: 80px;
+    padding-bottom: 8px;
+    border: solid 1px #c8cccf;
+    border-top:none;
+    background-color: rgba(255,255,255,0.8);
+    padding-top: 8px;
+    text-align: center;
+}
+
+#user ul li:hover .subnav2{
+    display: block;
+}
+
 /*login page*/
 #sign-page{
     width: 100%;
@@ -245,6 +277,7 @@ span{
     background-color: white;
     padding:30px 0;
 }
+
 
 /*homepage*/
 /*banner*/
