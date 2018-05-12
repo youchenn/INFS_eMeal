@@ -1,6 +1,6 @@
 <?php
 session_start();
 unset($_SESSION["user"]);
-session_destroy(); //清空以创建的所有SESSION
+session_destroy();
 header("Location: ../homepage.php");
 
