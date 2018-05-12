@@ -67,8 +67,8 @@ if (isset($_POST['reset']))
 	$mail->SMTPAuth = true;
 	
 	//set login details for gmail account
-	$mail->Username = "piggyzen@gmail.com";
-	$mail->Password = "tsumaki1995";
+	$mail->Username = "emealoperator@gmail.com";
+	$mail->Password = "infs3202admin";
 	
 	//set type of protection
 	$mail->SMTPSecure = "ssl"; //or we can use TLS
@@ -92,7 +92,7 @@ if (isset($_POST['reset']))
         http://localhost/eMeal/newpassword.php?email='.$email.'&hash='.$hash;
 	
 	//set who is sending
-	$mail->setFrom('piggyzen@gmail.com','YC');
+	$mail->setFrom('emealoperator@gmail.com','Admin');
 	
 	//set recipient
 	$mail->addAddress($email);

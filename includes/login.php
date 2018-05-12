@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 	//Error handlers
 	//Check if inputs are empty
 	if (empty($uid) || empty($pwd)) {
-		header("Location: ../LoginTest.php?login=empty");
+		header("Location: ../login.html?login=empty");
 		exit();
 	} 
 	else {
@@ -24,20 +24,20 @@ if (isset($_POST['submit'])) {
 				if($row["userEmailStatus"] == 'verified'){
 					if(password_verify($pwd, $row["userPassword"])){
 						//return true;
-						header("Location: ../homepage.php?login=success");
+						header("Location: ../homepage.html?login=success");
 					}
 					else{
 						//return false
-						header("Location: ../LoginTest.html?login=wrongpwd");
+						header("Location: ../login.html?login=wrongpwd");
 					}
 				}
 				else if ($row["userEmailStatus"] == 'not verified'){
 					//ask to verify
-					header("Location: ../LoginTest.html?login=plz_verify_email");
+					header("Location: ../login.html?login=plz_verify_email");
 				}
 			}
 		} else {
-			header("Location: ../LoginTest.php?login=error");
+			header("Location: ../login.html?login=error");
 			
 	}
 
