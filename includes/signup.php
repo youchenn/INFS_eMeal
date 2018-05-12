@@ -34,11 +34,15 @@ if (isset($_POST['submit'])) {
 						exit();
 					} else {
 						//Hashing the password
-						//$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-						// Insert the user into the database
-						$sql = "INSERT INTO `user` (`userId`, `userEmail`, `userPassword`, `userAddress`, `userPostalcode`, `userState`, `userContact`, `userNickname`, `userProfilepic`, `userBio`, `userGender`, `userDob`, `userOccupation`, `userRecipecount`, `userWebsite`) VALUES (NULL, '$email', '$pwd', NULL, NULL, NULL, NULL, '$uNickname', NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
+						$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+						//creating activation code
+						$token = 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890';
+						$token = str_shuffle($token);
+						$token = substr($token, 0, 10);
+						//Insert the user into the database
+						$sql = "INSERT INTO `user` (`userId`, `userEmail`, `userPassword`, `userAddress`, `userPostalcode`, `userState`, `userContact`, `userNickname`, `userProfilepic`, `userBio`, `userGender`, `userDob`, `userOccupation`, `userRecipecount`, `userWebsite`, `userActivationCode`, `userEmailStatus`) VALUES (NULL, '$email', '$hashedPwd', NULL, NULL, NULL, NULL, '$uNickname', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$token', 'not verified');";
 						mysqli_query($conn, $sql);
-						header("Location: ../signup_mock.php?signup=success");
+						header("Location: ../homepage.php?signup=success");
 						exit();
 					}
 				}
