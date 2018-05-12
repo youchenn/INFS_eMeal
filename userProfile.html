@@ -46,18 +46,21 @@
             <input type="text" placeholder="Search Here" />
         </form>
     </div>
+    <div class="clearfloat"></div>
     <div id="personalpage">
-        <div class="account">
-            <div class="accountimg">
-                <img src="img/MB_PREP_030.jpg">
-            </div>
-            <div class="accounttab">
-                <p><a class="accountp" href="userProfile.html">Personal Profile</a></p>
-                <p><a class="accountp" href="userProfileEdit.html">Edit Profile</a></p>
-            </div>
-        </div>
-        <div class="accountinfo">
-            <table class="showinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="leftprofile">
+                    <img src="img/MB_PREP_030.jpg">
+                    </div>
+                    <div class="accounttab">
+                    <p><a class="accountp" href="userProfile.html">Personal Profile</a></p>
+                    <p><a class="accountp" href="userProfileEdit.html">Edit Profile</a></p>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                <table class="showinfo">
                 <tr>
                     <td>Nick name:</td>
                     <td>Annie</td>
@@ -97,13 +100,15 @@
                     <td>Personal website:</td>
                     <td></td>
                 </tr>
-            </table>
-            <table class="recipedata">
+                </table>
+                <table class="recipedata">
                 <tr>
                     <td>Recipe Count:</td>
                     <td>5</td>
                 </tr>
-            </table>
+                </table>
+                </div>
+            </div>
         </div>
     </div>
     <div id="footer">
