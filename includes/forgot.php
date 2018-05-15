@@ -100,7 +100,7 @@ if (isset($_POST['reset']))
 	//send an email
 	if ($mail->send()){
 		echo "mail is sent";
-	header("Location: ../resetpassword.html?resetemail=sent");}
+	header("Location: ../passwordReset.html?resetemail=sent");}
 	else {
 	echo "sending failed";}
   }

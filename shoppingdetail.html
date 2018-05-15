@@ -9,7 +9,26 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
-    <script src="jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".add").click(function(){
+                var n=$(this).prev().val();
+                var num=parseInt(n)+1;
+                if(num==0){
+                    return;
+                }
+                $(this).prev().val(num);
+            });
+            $(".min").click(function(){
+                var n=$(this).next().val();
+                var num=parseInt(n)-1;
+                if(num==0){ return}
+                $(this).next().val(num);
+            });
+        });
+    </script>
 </head>
 <body>
     <div id="navigation">
@@ -55,15 +74,44 @@
         </div>
         <div class="detail-page">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
+                    <div class="img-wrapper">
                     <img class="item-img" src="img/mailchimp-image-26.png" alt="itemImg">
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h3 class="pname">Name</h3>
-                    <p>&#36;</p><p class="price">20.00</p>
-                    <P>Quantity</P>
-                    <p class="pqty"></p>
-                    <a>Add item</a>
+                <div class="col-md-7">
+                    <div class="right_detail">
+                    <h3 class="item_name">Name</h3>
+                    <p class="dollar_sign">&#36;</p><p class="item_price">20.00</p>
+                    <P class="quantity">Quantity</P>
+                    <div class="quantity_num">
+                        <em class="min">-</em>
+                        <input type="text" value="1" class="num"/>
+                        <em class="add">+</em>
+                    </div>
+                    <a class="recipe-btn">Add into cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfloat"></div>
+            <div id="goods_detail">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#description" data-toggle="tab">
+                            Description
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#reviews" data-toggle="tab">Reviews</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="description">
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    </div>
+                    <div class="tab-pane fade" id="reviews">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni corporis atque, dolores cumque modi ipsum unde fugit ducimus nam qui ab magnam excepturi incidunt, harum totam laboriosam dignissimos numquam nulla!</p>
+                    </div>
                 </div>
             </div>
         </div>
