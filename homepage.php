@@ -47,7 +47,7 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){
                     <li>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="#">Profile</a></li>
+                                <li><a href="userProfile.html">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
