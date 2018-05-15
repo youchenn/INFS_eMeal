@@ -94,7 +94,7 @@ span{
     float: left;
     text-align: center;
     position: relative;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
 
 #navigation a{
@@ -605,7 +605,7 @@ span{
 
 .detail-page h3{
     font-size: 2.4em;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .detail-page .dollar_sign{
@@ -618,6 +618,7 @@ span{
     font-family: Microsoft YaHei;
     font-size: 1.6em;
     border-bottom: solid 1px #c4c4c4;
+    padding-bottom: 10px;
 }
 .detail-page .quantity{
     font-size: 1.2em;
@@ -671,6 +672,98 @@ span{
 
 #goods_detail .tab-pane{
     margin: 30px 10px;
+}
+
+.tab-pane .login-input{
+    width: 200px;
+}
+
+.tab-pane p{
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.tab-pane textarea{
+    color:#6a6f77;
+    outline: none;
+    width: 100%;
+    height: 120px;
+    margin: 0px auto 10px auto;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: 1px solid #c8cccf;
+    resize: none;
+    padding: 15px;
+}
+
+.tab-pane .signup-submit{
+    margin-right: 0px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.comment_box{
+    width: 100%;
+    margin-top: 40px;
+    background-color: #f4f4f4;
+    padding: 20px
+}
+
+.comment_list .comment_name{
+    margin-top: 10px;
+    font-size: 1.5em;
+    float: left;
+}
+
+.comment_list .comment_date{
+    float: right;
+    margin-top: 10px;
+}
+
+.comment_list .comment_content{
+    clear: both;
+    border-top: solid 1px #c8cccf;
+    padding-top:20px;
+    padding-bottom: 30px;
+}
+
+/*shopping cart*/
+.cart-page .list_title{
+    border-bottom: solid 1px #c8cccf;
+    padding-bottom: 10px;
+}
+
+.cart-page .list_box{
+    border-bottom: solid 1px #c8cccf;
+}
+
+.cart-page p{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.cart-page .list_box img{
+    width: 90%;
+    height: 100px;
+    margin: 20px 5%;
+}
+
+.cart-page .list_box p{
+    text-align: center;
+    line-height: 140px;
+}
+
+.cart-page .dollar_sign{
+    font-size: 1em;
+    float: left;
+}
+
+.cart-page .item_price{
+    font-size: 1em;
+}
+
+.cart-page .quantity_num{
+    margin: 55px auto;
 }
 
 @media only screen and (max-width:1000px){

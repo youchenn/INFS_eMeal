@@ -27,6 +27,7 @@
                 if(num==0){ return}
                 $(this).next().val(num);
             });
+            
         });
     </script>
 </head>
@@ -37,13 +38,13 @@
             <p>e<span>MEAL</span></p>
             <div id="sign">
             <ul>
-                <li><a href="#">Sign in</a></li>
+                <li><a href="login.html">Sign in</a></li>
                 <li><a href="#">Sign up</a></li>
             </ul>
             </div>
         </div>
         <ul id="nav">
-            <li class="active"><a href="">HOME</a>
+            <li><a href="homepage.html">HOME</a>
             <li><a href="">STYLE</a>
                 <ul class="subnav">
                     <li><a href="#">Western</a></li>
@@ -59,12 +60,57 @@
                 </ul>
             </li>
             <li><a href="">BOX SIZE</a></li>
-            <li><a href="">SHOPPING</a></li>
+            <li class="active"><a href="">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />
         </form>
     </div>
+    <div class="gray">
+        <div class="tabbar">
+            <ol class="breadcrumb">
+               <li><a href="shoppinggeneral.html">Shopping</a></li>
+	           <li class="active">Cart</li>
+            </ol>
+        </div>
+        <div class="cart-page">
+            <div class="detail-page">
+               <div class="list_title">
+                <div class="row">
+                    <div class="col-md-2"><p>Item</p></div>
+                    <div class="col-md-3"><p>Name</p></div>
+                    <div class="col-md-1"><p>Price</p></div>
+                    <div class="col-md-2"><p>Quantity</p></div>
+                    <div class="col-md-2"><p>Total</p>
+                    </div>
+                    <div class="col-md-1"><p>Remove</p></div>
+                </div>
+                </div>
+                <div class="list_box">
+                    <div class="row">
+                        <div class="col col-md-2"><img src="img/mailchimp-image-26.png" alt="Item img"></div>
+                        <div class="col col-md-3"><p>Name</p></div>
+                        <div class="col col-md-1"><p class="dollar_sign">&#36;</p><p class="item_price">20.00</p></div>
+                        <div class="col col-md-2">
+                            <div class="quantity_num">
+                                <em class="min">-</em>
+                                <input type="text" value="1" class="num"/>
+                                <em class="add">+</em>
+                            </div>
+                        </div>
+                        <div class="col col-md-2"><p>Total</p>
+                    </div>
+                        <div class="col col-md-1"><p>Remove</p></div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfloat"></div>
+    </div>
+    <div id="footer">
+        <p>&copy;2018 eMeal Company. All Rights Reserved</p>
+    </div>
+    
 
 </body>
 </html>
