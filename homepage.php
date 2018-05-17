@@ -57,7 +57,7 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){
         </div>
         
         <ul id="nav">
-            <li class="active"><a href="">HOME</a>
+            <li class="active"><a href="homepage.php">HOME</a>
             <li><a href="">STYLE</a>
                 <ul class="subnav">
                     <li><a href="#">Western</a></li>
@@ -73,7 +73,7 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){
                 </ul>
             </li>
             <li><a href="">BOX SIZE</a></li>
-            <li><a href="">SHOPPING</a></li>
+            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />

@@ -12,18 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        function fmoney(s, n) {
-            n = n > 0 && n <= 20 ? n : 2;
-            s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
-            var l = s.split(".")[0].split("").reverse(),
-            r = s.split(".")[1];
-            t = "";
-            for (i = 0; i < l.length; i++) {
-                t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
-            }
-            return t.split("").reverse().join("") + "." + r;
-            }
-        
         $(document).ready(function(){
             $(".add").click(function(){
                 var n=$(this).prev().val();
@@ -32,41 +20,22 @@
                     return;
                 }
                 $(this).prev().val(num);
-                var price = fmoney($(this).parent().parent().parent().find(".item_price").text(),2);
-                var sum = num * price; $(this).parent().parent().parent().find(".item_total").text(fmoney(sum,2));
-                getTotal();
             });
-            
-            $(".detail-page").find(".list_box").each(function(){
-            var price = fmoney($(this).children().children().find(".item_price").text(),2);
-            $(this).children().children().find(".item_total").text(price);
-            });
-            
-            
             $(".min").click(function(){
                 var n=$(this).next().val();
                 var num=parseInt(n)-1;
                 if(num==0){ return}
                 $(this).next().val(num);
-                var price = fmoney($(this).parent().parent().parent().find(".item_price").text(),2);
-                var sum = num * price; $(this).parent().parent().parent().find(".item_total").text(fmoney(sum,2));
-                getTotal();
             });
-            
-            $(".remove_btn").click(function(){
-                $(this).parent().parent().parent().remove();
-                getTotal();
-            });
-            
-            function getTotal(){
-                var priceTotal = 0;
-                $(".detail-page").find(".list_box").each(function(){
-                    priceTotal += parseFloat($(this).find(".item_total").text());
-                })
-                $("#price_total").text(fmoney(priceTotal,2));
+            function delItem(obj){
+                $(obj).parent().parent().parent().remove();
             }
-            getTotal();
         });
+        function setTotal(){
+            var allprice=0;
+            var allnum=0;
+            allprice = ($(".num").val()*1)*($(".item_price").val()*1);           
+        };
     </script>
 </head>
 <body>
@@ -143,9 +112,7 @@
                             </div>
                         </div>
                         <div class="col col-md-2">
-                           <div class="sign_price">
-                            <p class="dollar_sign">&#36;</p><p class="item_total">Total</p>
-                            </div>
+                            <p class="item_total">Total</p>
                         </div>
                         <div class="col col-md-1">
                             <input type="button" value="x" class="remove_btn">
@@ -161,7 +128,7 @@
                             <p>Name</p>
                         </div>
                         <div class="col col-md-1">
-                            <p class="dollar_sign">&#36;</p><p class="item_price">18.00</p>
+                            <p class="dollar_sign">&#36;</p><p class="item_price">20.00</p>
                         </div>
                         <div class="col col-md-2">
                             <div class="quantity_num">
@@ -171,53 +138,13 @@
                             </div>
                         </div>
                         <div class="col col-md-2">
-                            <div class="sign_price">
-                            <p class="dollar_sign">&#36;</p><p class="item_total">Total</p>
-                            </div>
+                            <p class="item_total">Total</p>
                         </div>
                         <div class="col col-md-1">
-                            <input type="button" value="x" class="remove_btn"/>
+                            <input type="button" value="x" class="remove_btn" onclick="delItem(this)">
                         </div>
                     </div>
                 </div>
-                                <div class="list_box">
-                    <div class="row">
-                        <div class="col col-md-2">
-                            <img src="img/mailchimp-image-26.png" alt="Item img">
-                        </div>
-                        <div class="col col-md-3">
-                            <p>Name</p>
-                        </div>
-                        <div class="col col-md-1">
-                            <p class="dollar_sign">&#36;</p><p class="item_price">14.00</p>
-                        </div>
-                        <div class="col col-md-2">
-                            <div class="quantity_num">
-                                <em class="min">-</em>
-                                <input type="text" value="1" class="num"/>
-                                <em class="add">+</em>
-                            </div>
-                        </div>
-                        <div class="col col-md-2">
-                            <div class="sign_price">
-                            <p class="dollar_sign">&#36;</p><p class="item_total">Total</p>
-                            </div>
-                        </div>
-                        <div class="col col-md-1">
-                            <input type="button" value="x" class="remove_btn"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="checkout">
-                   <div class="check_price">
-                        <p><span>Total price</span></p><div class="sign_price">
-                            <p class="dollar_sign">&#36;</p><p id="price_total">Total</p>
-                            </div>
-                    </div>
-                    <div class="clearfloat"></div>
-                    <input type="button" class="recipe-btn" value="Check out">
-                </div>
-                <div class="clearfloat"></div>
             </div>
         </div>
         <div class="clearfloat"></div>
