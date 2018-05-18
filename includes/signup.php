@@ -12,17 +12,17 @@ if (isset($_POST['submit'])) {
 	// Error handlers
 	// Check for empty fields
 	if (empty($email) || empty($uNickname) || empty($pwd)) {
-		header("Location: ../signup_mock.php?signup=empty");
+		header("Location: ../signup.php?signup=empty");
 		exit();
 	} else {
 			// Check if input characters are valid
 			if (!preg_match("/^[a-zA-Z]*$/", $uNickname)) {
-				header("Location: ../signup_mock.php?signup=invalid");
+				header("Location: ../signup.php?signup=invalid");
 				exit();
 			} else {
 				//Check if email is valid
 				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-					header("Location: ../signup_mock.php?signup=email");
+					header("Location: ../signup.php?signup=email");
 					exit();
 				} else {
 					$sql = "SELECT * FROM user WHERE userNickname='$uNickname'";
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 					$resultCheck = mysqli_num_rows($result);
 					
 					if ($resultCheck > 0) {
-						header("Location: ../signup_mock.php?signup=usertaken");
+						header("Location: ../signup.php?signup=usertaken");
 						exit();
 					} else {
 						//Hashing the password
@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 						//Insert the user into the database
 						$sql = "INSERT INTO `user` (`userId`, `userEmail`, `userPassword`, `userAddress`, `userPostalcode`, `userState`, `userContact`, `userNickname`, `userProfilepic`, `userBio`, `userGender`, `userDob`, `userOccupation`, `userRecipecount`, `userWebsite`, `userActivationCode`, `userEmailStatus`) VALUES (NULL, '$email', '$hashedPwd', NULL, NULL, NULL, NULL, '$uNickname', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$token', 'not verified');";
 						mysqli_query($conn, $sql);
-						header("Location: ../homepage.html?signup=success");
+						header("Location: ../homepage.php?signup=success");
 						exit();
 					}
 				}
@@ -50,6 +50,6 @@ if (isset($_POST['submit'])) {
 	}
 	
 } else {
-	header("Location: ../signup_mock.php");
+	header("Location: ../signup.php");
 	exit();
 }

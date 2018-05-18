@@ -4,11 +4,8 @@
 */
 require 'db.php';
 session_start();
-
-
 // Make sure email and hash variables aren't empty
 include 'db.php';
-
 if( isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash']) )
 {
 	
@@ -17,12 +14,10 @@ if( isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && 
 	$hash = $_GET["hash"];
 	//$pwd = mysqli_real_escape_string($conn, $_POST['confirmpassword']);
 		
-
 	// Make sure user email with matching hash exist
 	//$result = $mysqli->query("SELECT * FROM users WHERE email='$email' AND hash='$hash'");
 	$query = "SELECT * FROM user WHERE userEmail='$email' AND userActivationCode='$hash'";
 	$result = mysqli_query($conn, $query);
-
 	if ( $result->num_rows == 0 ) // User doesn't exist
     { 
         $_SESSION['message'] = "User with that email doesn't exist!";
@@ -43,5 +38,4 @@ else {
 	header("Location: ../newpassword.html?invalidurl");
 		
 }
-
 ?>
