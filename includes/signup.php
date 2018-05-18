@@ -12,12 +12,14 @@ if (isset($_POST['submit'])) {
 	// Error handlers
 	// Check for empty fields
 	if (empty($email) || empty($uNickname) || empty($pwd)) {
-		header("Location: ../signup.php?signup=empty");
+		echo 'Empty imputs!';
+        header("Refresh: 1; url= ../signup.html");
 		exit();
 	} else {
 			// Check if input characters are valid
 			if (!preg_match("/^[a-zA-Z]*$/", $uNickname)) {
-				header("Location: ../signup.php?signup=invalid");
+				echo 'Invalid nickname!';
+                header("Refresh: 1; url= ../signup.html");
 				exit();
 			} else {
 				//Check if email is valid
