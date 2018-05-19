@@ -9,7 +9,16 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
-    <script src="jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(function (){
+            $(".like").click(function(){
+                var input = $(this).find('.count');
+                input.val(parseInt(input.val())+1);
+            })
+        })
+    </script>
 </head>
 <body>
     <div id="navigation">
@@ -24,7 +33,7 @@
             </div>
         </div>
         <ul id="nav">
-            <li class="active"><a href="">HOME</a>
+            <li><a href="">HOME</a>
             <li><a href="">STYLE</a>
                 <ul class="subnav">
                     <li><a href="#">Western</a></li>
@@ -46,58 +55,85 @@
             <input type="text" placeholder="Search Here" />
         </form>
     </div>
-    <div class="clearfloat"></div>
-    <div id="recipepage">
-        <div class="container">
+    <div class="gray">
+        <div class="tabbar">
+            <ol class="breadcrumb">
+                <li><a href="recipegeneral.html">Recipe</a></li>
+                <li class="active">Detail</li>
+            </ol>
+        </div>
+        <div class="detail-page">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="leftrecipe">
-                    <img src="img/school-lunch1.jpg">
+                <div class="col-md-5">
+                    <div class="img-wrapper">
+                        <img class="item-img" src="img/school-lunch1.jpg" alt="recipeImg">
                     </div>
-                    <table class="renum">
-                        <tr>
-                            <td>View:</td>
-                            <td>999</td>
-                        </tr>
-                        <tr>
-                            <td>Like:</td>
-                            <td>666</td>
-                        </tr>
-                        <tr>
-                            <td>Comment:</td>
-                            <td>50</td>
-                        </tr>
-                    </table>
                 </div>
-                <div class="col-md-9">
-                    <h3>Simple tortilla rolls</h3>
-                    <table class="reinfo">
-                        <tr>
-                            <td>Author:</td>
-                            <td>Annie</td>
-                        </tr>
-                        <tr>
-                            <td>Date:</td>
-                            <td>12/05/2018</td>
-                        </tr>
-                        <tr>
-                            <td>Size:</td>
-                            <td>500ml</td>
-                        </tr>
-                    </table>
-                    <article class="recipecontent">
-                        <p>Tortilla rolls. One has cream cheese, turkey, and cheddar. One has cream cheese and turkey. One has avocado. One has butter. It's just a tortilla, trimmed into a square, then spread with whatever the filling is, rolled, and sliced. A sweet little bunch of seedless black grapes on the side, with a heart strawberry and a (sort of) heart tomato. They all have a heart banana chocolate chip muffin, blueberries, and cheese hearts. </p>
-                    </article>
-                    <form class="comment">
-                    <div class="form-group">
-                        <label for="comment">Comment:</label>
-                        <textarea class="form-control" rows="5" id="comment" placeholder="Please leave your comment here ..."></textarea>
-                        <button class="comment_btn">Post comment</button>
+                <div class="col-md-7">
+                    <div class="right_detail">
+                        <h3 class="recipe_name">Simple tortilla rolls</h3>
+                        <button class="like">
+                            <img class="like-img" src="img/Like.png">
+                            <i class="fa fa-thumbs-o-up"></i>Like <input class="count" name="like-count" readonly="readonly" type="text" value="0">
+                        </button>
+                        <table class="recipe_info">
+                            <tr>
+                                <td>Author:</td>
+                                <td>Annie</td>
+                            </tr>
+                            <tr>
+                                <td>Date:</td>
+                                <td>12/05/2018</td>
+                            </tr>
+                            <tr>
+                                <td>Size:</td>
+                                <td>500ml</td>
+                            </tr>
+                        </table>
                     </div>
-                    </form>
+                </div>
+            </div>
+            <div class="clearfloat"></div>
+            <div id="goods_detail">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#description" data-toggle="tab">Details</a>
+                    </li>
+                    <li>
+                        <a href="#reviews" data-toggle="tab">Comments</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="description">
+                        <p>Tortilla rolls. One has cream cheese, turkey, and cheddar. One has cream cheese and turkey. One has avocado. One has butter. It's just a tortilla, trimmed into a square, then spread with whatever the filling is, rolled, and sliced. A sweet little bunch of seedless black grapes on the side, with a heart strawberry and a (sort of) heart tomato. They all have a heart banana chocolate chip muffin, blueberries, and cheese hearts.</p>
+                    </div>
+                    <div class="tab-pane fade" id="reviews">
+                        <p>Nickname</p>
+                        <input class="login-input" onfocus="this.value=''" onblur="this.value='Please enter your nickname'" value="Please enter your nickname">
+                        <p>Comment:</p>
+                        <textarea onfocus="this value=''" onblur="this.value='Please leave your comment'">Please leave your comment here ...</textarea>
+                        <input class="signup-submit" type="submit">
+                        <div class="comment_list">
+                            <div class="comment_box">
+                                <div class="comment_detail">
+                                    <p class="comment_name">John Doe</p>
+                                    <p class="comment_date">16 May, 2018</p>
+                                    <p class="comment_content">Good recipe!</p>
+                                </div>
+                            </div>
+                            <div class="comment_box">
+                                <div class="comment_detail">
+                                    <p class="comment_name">John Doe</p>
+                                    <p class="comment_date">16 May, 2018</p>
+                                    <p class="comment_content">Good recipe!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="clearfloat"></div>
     </div>
     <div id="footer">
             <p>&copy;2018 eMeal Company. All Rights Reserved</p>

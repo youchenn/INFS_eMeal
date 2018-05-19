@@ -680,6 +680,7 @@ span{
 .tab-pane p{
     margin-bottom: 10px;
     font-size: 1.2em;
+    text-align: justify;
 }
 
 .tab-pane textarea{
@@ -850,55 +851,59 @@ span{
 }
 
 /*userProfileEdit*/
-#personalpage {
-    width: 100%;
-    
-}
-
-#personalpage .col-md-3{
-    padding: 0 7%;
-    margin-top: 240px;
-}
-
-#personalpage .col-md-9{
-    background-color: #f4f4f4;
-    margin-top: 200px;
-    padding: 30px 40px;
-    
+.profile-menu{
+    margin-top: 30px;
 }
 
 .leftprofile{
-    width: 130px;
-    height: 130px;
-    border: 1px solid #f7ad18;
-    margin-bottom: 20px;
+    width: 136px;
+    height: 136px;
+    border: 3px solid #f7ad18;
+    padding: 5px;
+    margin-left: 45%;
+    border-radius: 50%;
 }
 
 .leftprofile img{
-    width: 110px;
-    height: 110px;
-    margin: 10px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.accounttab{
+    margin-left: 50%;
 }
 
 .accountp{
     color: black;
 }
 
+.accounttab p{
+    margin-top: 30px;
+}
+
 .accountp:hover{
     color: #f7ad18;
+}
+
+.profileinfo{
+    background-color: white;
+    padding: 30px 100px;
+}
+
+.profile-info{
+    width: 100%;
+}
+
+.infotab{
+    width: 20%;
+    padding-bottom: 20px;
 }
 
 .profileinfo img{
     width: 100px;
     height: 100px;
     margin: 10px 50% 20px auto;
-}
-
-.profileinfo p{
-    width: 25%;
-    float: left;
-    margin-top: 10px;
-    margin-bottom: 20px;
 }
 
 .info{
@@ -908,19 +913,21 @@ span{
     border: 1px solid #c8cccf;
     color:#6a6f77;
     outline: 0;
-    width: 55%;
+    width: 100%;
     height: 40px;
     margin-bottom: 20px;
 }
 
 .infosave{
+    display: block;
     text-align: center;
-    width: 80px;
-    height: 30px;
+    width: 85px;
+    height: 35px;
     border-radius: 15px;
     font-size: 1em;
     border: solid 3px #f7ad18;
-    margin: 10px 40% auto 40%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .infosave:hover{
@@ -930,84 +937,79 @@ span{
 
 /*userProfile*/
 .showinfo{
-    width: 70%;
-    float: left;
-    vertical-align: middle;
+    width: 100%;
 }
 
-#personalpage td{
+.showinfo td{
     height: 40px;
-}
-
-.recipedata{
-    width: 20%;
-    float: left;
 }
 
 /*recipeContent*/
-#recipepage{
-    width: 100%;
-    margin-top: 150px;
-    background-color: #f4f4f4;
+.recipe_info{
+    width: 50%;
 }
 
-#recipepage .col-md-9{
-    border-left: 1px solid #f7ad18;
-}
-
-.leftrecipe{
-    margin-top: 50px;
-}
-
-.leftrecipe img{
-    width: 250px;
-    height: 200px;
-}
-
-.renum{
-    margin: 30px;
-    text-align: center;
-}
-
-#recipepage td{
-    width: 100px;
-    height: 30px;
-}
-
-#recipepage h3{
-    text-align: center;
-    margin-top: 50px;
-}
-
-.reinfo{
-    margin: 20px auto 10px auto;
-    text-align: center;
-}
-
-.recipecontent{
-    padding: 30px;
-    background-color: #fff;
-    text-align: justify;
-    line-height: 1.5;
-}
-
-.comment{
-    margin:30px auto;
-}
-
-.comment_btn{
-    margin-top: 10px;
-    margin-bottom: 50px;
-    float: right;
-    text-align: center;
-    width: 150px;
+.recipe_info td{
     height: 40px;
-    border-radius: 15px;
-    font-size: 1em;
-    border: solid 3px #f7ad18;
 }
 
-.comment_btn:hover{
-    color: white;
-    background-color:#f7ad18;
+.like-img{
+    width: 25px;
+}
+
+.like{
+    display: block;
+    border: 1px solid transparent;
+    font-size: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.count{
+    border: none;
+    width: 20px;
+    background: transparent;
+}
+
+/*uploadRecipe*/
+.left-upload{
+    text-align: right;
+}
+
+.left-upload p{
+    
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.right-upload .up-recipe{
+    width: 80%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    -web-kit-appearance:none;
+    -moz-appearance:none;
+    border-radius: 5px;
+    border: 1px solid #c8cccf;
+    color:#6a6f77;
+    outline: 0;
+}
+
+.up-recipe1{
+    width: 80%;
+    height: 300px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    -web-kit-appearance:none;
+    -moz-appearance:none;
+    border-radius: 5px;
+    border: 1px solid #c8cccf;
+    color:#6a6f77;
+    outline: 0;
+}
+
+.right-upload .infosave{
+    margin-left: 35%;
 }
