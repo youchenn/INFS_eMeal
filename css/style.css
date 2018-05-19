@@ -266,17 +266,17 @@ span{
 }
 
 #footer{
-    clear: both;
     width: 100%;
     background-color:white;
-    height: 50px;
+    height: 100px;
+    z-index: 999;
 }
 
 #footer p{
     width: 100%;
     text-align: center;
     background-color: white;
-    padding:30px 0;
+    padding:40px 0;
 }
 
 
@@ -831,6 +831,53 @@ span{
     .sidebar .checkbox{
         margin-left: 50px;
     }
+    
+    .cart-page .list_title{
+        display: none;
+    }
+    
+    .cart-page .list_box img{
+        height: 200px;
+        width: 200px;
+        float: left;
+    }
+    
+    .cart-page .list_box .item_name{
+        width: 100%;
+        text-align: left;
+        line-height: 100px;
+    }
+    
+    .cart-page .list_box .unit_price{
+        width: 60px;
+        float: left;
+        text-align: left;
+        line-height: 10px;
+        padding-left: 0px;
+        
+    }
+    .cart-page .list_box .quantity_num{
+        width: 80px;
+    }
+    .cart-page .list_box .quantity_num .min{
+        width: 20px;
+    }
+    .cart-page .list_box .quantity_num .add{
+        width: 20px;
+    }
+    
+    .cart-page .list_box .quantity_num .num{
+        width: 38px;
+    }
+    .cart-page .list_box .sign_price p{
+        font-size: 1.2em;
+        line-height: 0px;
+    }
+    
+    .cart-page .list_box .remove_btn{
+        margin: 10px auto;
+    }
+    
 }
 
 @media only screen and (max-width:500px){
@@ -848,6 +895,50 @@ span{
     .sidebar h4{
         font-size: 1.3em;
     }
+    
+    .cart-page .list_box img{
+        height: 150px;
+        width: 80%;
+        margin-left: 10%;
+    }
+    
+    .cart-page .list_box .item_name{
+        width: 100%;
+        text-align: center;
+        line-height: 10px;
+        clear: both;
+    }
+    
+    .cart-page .list_box .unit_price{
+        width: 60px;
+        float: left;
+        text-align:center;
+        margin-left: 43%;
+    }
+    .cart-page .list_box .quantity_num{
+        width: 80px;
+        clear: both;
+        margin:30px auto;
+    }
+    .cart-page .list_box .quantity_num .min{
+        width: 20px;
+    }
+    .cart-page .list_box .quantity_num .add{
+        width: 20px;
+    }
+    
+    .cart-page .list_box .quantity_num .num{
+        width: 38px;
+    }
+    .cart-page .list_box .sign_price p{
+        font-size: 1.2em;
+        line-height: 10px;
+    }
+    
+    .cart-page .list_box .remove_btn{
+        margin: 30px auto;
+    }
+    
 }
 
 /*userProfileEdit*/

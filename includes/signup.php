@@ -12,17 +12,19 @@ if (isset($_POST['submit'])) {
 	// Error handlers
 	// Check for empty fields
 	if (empty($email) || empty($uNickname) || empty($pwd)) {
-		header("Location: ../signup_mock.php?signup=empty");
+		echo 'Empty imputs!';
+        header("Refresh: 1; url= ../signup.html");
 		exit();
 	} else {
 			// Check if input characters are valid
 			if (!preg_match("/^[a-zA-Z]*$/", $uNickname)) {
-				header("Location: ../signup_mock.php?signup=invalid");
+				echo 'Invalid nickname!';
+                header("Refresh: 1; url= ../signup.html");
 				exit();
 			} else {
 				//Check if email is valid
 				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-					header("Location: ../signup_mock.php?signup=email");
+					header("Location: ../signup.php?signup=email");
 					exit();
 				} else {
 					$sql = "SELECT * FROM user WHERE userNickname='$uNickname'";
@@ -30,7 +32,7 @@ if (isset($_POST['submit'])) {
 					$resultCheck = mysqli_num_rows($result);
 					
 					if ($resultCheck > 0) {
-						header("Location: ../signup_mock.php?signup=usertaken");
+						header("Location: ../signup.php?signup=usertaken");
 						exit();
 					} else {
 						//Hashing the password
@@ -50,6 +52,6 @@ if (isset($_POST['submit'])) {
 	}
 	
 } else {
-	header("Location: ../signup_mock.php");
+	header("Location: ../signup.php");
 	exit();
 }
