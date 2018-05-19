@@ -1064,6 +1064,29 @@ span{
     background: transparent;
 }
 
+.viewrecipe h4{
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+.recipe-bottom{
+    width: 250px;
+    height: 170px;
+    float: left;
+    margin-left: 40px;
+    margin-right: 25px;
+}
+
+.recipe-bottom img{
+    width: 250px;
+    height: 170px;
+    border-radius: 1%;
+}
+
+.recipe-bottom p{
+    text-align: center;
+}
+
 /*uploadRecipe*/
 .upload-page{
     width: 80%;
@@ -1119,6 +1142,7 @@ span{
 .personal-recipe img{
     width: 250px;
     height: 170px;
+    border-radius: 1%;
 }
 
 .viewrecipe p{
