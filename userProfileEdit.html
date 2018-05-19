@@ -10,17 +10,33 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function(){
+           $("#user").hide();
+       });
+        <?php  if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){?>
+        $(document).ready(function(){
+          $("#sign").hide(); 
+            $("#user").show();
+        });
+        <?php }?>
+    </script>
 </head>
 <body>
     <div id="navigation">
         <div id="title">
             <div class="addthis_inline_share_toolbox_20fu"></div>
             <p>e<span>MEAL</span></p>
-            <div id="sign">
-            <ul>
-                <li><a href="#">Sign in</a></li>
-                <li><a href="#">Sign up</a></li>
-            </ul>
+            <div id="user">
+                <ul>
+                    <li>
+                        Welcome, <a><?php echo $_SESSION['user']?></a>
+                            <ul class="subnav2">
+                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="includes/logout.php">Log out</a></li>
+                            </ul>
+                    </li>                
+                </ul>
             </div>
         </div>
         <ul id="nav">
@@ -40,7 +56,7 @@
                 </ul>
             </li>
             <li><a href="">BOX SIZE</a></li>
-            <li><a href="">SHOPPING</a></li>
+            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />
@@ -55,7 +71,7 @@
         </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="profile-menu">
                             <div class="leftprofile">
                                 <img src="img/profile-picture.png">
@@ -64,16 +80,16 @@
                                 <p><a class="accountp" href="userProfile.html">Personal Profile</a></p>
                                 <p><a class="accountp" href="userProfileEdit.html">Edit Profile</a></p>
                                 <p><a class="accountp" href="recipeUpload.html">Upload Recipe</a></p>
-                                <p><a class="accountp" href="">View Recipe</a></p>
+                                <p><a class="accountp" href="viewRecipe.html">View Recipe</a></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-10">
                         <div class="profileinfo">
                             <table class="profile-info">
                                 <tr>
-                                    <th class="infotab">Profile picture:</th>
-                                    <th><img src="img/profile-picture.png"></th>
+                                    <td class="infotab">Profile picture:</td>
+                                    <td><img src="img/profile-picture.png"></td>
                                 </tr>
                                 <tr>
                                     <td class="infotab">Nick name:</td>

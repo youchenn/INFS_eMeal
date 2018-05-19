@@ -951,7 +951,7 @@ span{
     height: 136px;
     border: 3px solid #f7ad18;
     padding: 5px;
-    margin-left: 45%;
+    margin-left: 15%;
     border-radius: 50%;
 }
 
@@ -962,7 +962,7 @@ span{
 }
 
 .accounttab{
-    margin-left: 50%;
+    margin-left: 25%;
 }
 
 .accountp{
@@ -1007,6 +1007,7 @@ span{
     width: 100%;
     height: 40px;
     margin-bottom: 20px;
+    padding: 10px;
 }
 
 .infosave{
@@ -1017,8 +1018,8 @@ span{
     border-radius: 15px;
     font-size: 1em;
     border: solid 3px #f7ad18;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px auto;
+    background-color: white;
 }
 
 .infosave:hover{
@@ -1041,7 +1042,7 @@ span{
 }
 
 .recipe_info td{
-    height: 40px;
+    height: 35px;
 }
 
 .like-img{
@@ -1054,6 +1055,7 @@ span{
     font-size: 15px;
     margin-bottom: 10px;
     cursor: pointer;
+    background-color: white;
 }
 
 .count{
@@ -1063,31 +1065,36 @@ span{
 }
 
 /*uploadRecipe*/
-.left-upload{
-    text-align: right;
-}
-
-.left-upload p{
-    
-    margin-top: 10px;
-    margin-bottom: 40px;
-}
-
-.right-upload .up-recipe{
+.upload-page{
     width: 80%;
-    height: 40px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 8px;
-    -web-kit-appearance:none;
-    -moz-appearance:none;
-    border-radius: 5px;
-    border: 1px solid #c8cccf;
-    color:#6a6f77;
-    outline: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.up-recipe1{
+.lefttab{
+    width: 20%;
+    height: 40px;
+    text-align: right;
+    vertical-align: top;
+    padding: 10px 20px;
+}
+
+.upload-page .info{
+    width: 80%;
+}
+
+.upload-page .re-img{
+    width: 123px;
+    height: 83px;
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+}
+
+.upload-page img{
+    padding: 30px 50px;
+}
+
+.up-recipe{
     width: 80%;
     height: 300px;
     margin-bottom: 20px;
@@ -1101,6 +1108,41 @@ span{
     outline: 0;
 }
 
-.right-upload .infosave{
-    margin-left: 35%;
+/*viewRecipe*/
+.personal-recipe{
+    width: 250px;
+    height: 170px;
+    float: left;
+    margin: 20px 30px;
+}
+
+.personal-recipe img{
+    width: 250px;
+    height: 170px;
+}
+
+.viewrecipe p{
+    margin: 5px 10px;
+}
+
+.recipename{
+    color: black;
+}
+
+.edit-btn{
+    width: 50px;
+    height: 20px;
+    background-color: #f7b32c;
+    color: white;
+    float: right;
+    text-align: center;
+}
+
+.recipename:hover{
+    color: #f7b32c;
+}
+
+.edit-btn:hover{
+    background-color:#f29d00;
+    color: white;
 }
