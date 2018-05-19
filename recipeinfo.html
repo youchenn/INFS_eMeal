@@ -11,6 +11,17 @@
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function(){
+           $("#user").hide();
+       });
+        <?php  if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){?>
+        $(document).ready(function(){
+          $("#sign").hide(); 
+            $("#user").show();
+        });
+        <?php }?>
+    </script>
     <script>
         $(function (){
             $(".like").click(function(){
@@ -25,11 +36,16 @@
         <div id="title">
             <div class="addthis_inline_share_toolbox_20fu"></div>
             <p>e<span>MEAL</span></p>
-            <div id="sign">
-            <ul>
-                <li><a href="#">Sign in</a></li>
-                <li><a href="#">Sign up</a></li>
-            </ul>
+            <div id="user">
+                <ul>
+                    <li>
+                        Welcome, <a><?php echo $_SESSION['user']?></a>
+                            <ul class="subnav2">
+                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="includes/logout.php">Log out</a></li>
+                            </ul>
+                    </li>                
+                </ul>
             </div>
         </div>
         <ul id="nav">
@@ -49,7 +65,7 @@
                 </ul>
             </li>
             <li><a href="">BOX SIZE</a></li>
-            <li><a href="">SHOPPING</a></li>
+            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />
@@ -89,6 +105,10 @@
                                 <td>Size:</td>
                                 <td>500ml</td>
                             </tr>
+                            <tr>
+                                <td>Style:</td>
+                                <td>Western</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -111,7 +131,7 @@
                         <p>Nickname</p>
                         <input class="login-input" onfocus="this.value=''" onblur="this.value='Please enter your nickname'" value="Please enter your nickname">
                         <p>Comment:</p>
-                        <textarea onfocus="this value=''" onblur="this.value='Please leave your comment'">Please leave your comment here ...</textarea>
+                        <textarea onfocus="this value=''" onblur="this.value='Please leave your comment...'">Please leave your comment here ...</textarea>
                         <input class="signup-submit" type="submit">
                         <div class="comment_list">
                             <div class="comment_box">
