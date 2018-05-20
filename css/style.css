@@ -1175,3 +1175,7 @@ span{
     background-color:#f29d00;
     color: white;
 }
+
+@media only screen and (max-width:500px){
+    
+}
