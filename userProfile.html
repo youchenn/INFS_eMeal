@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,12 +30,18 @@
         <div id="title">
             <div class="addthis_inline_share_toolbox_20fu"></div>
             <p>e<span>MEAL</span></p>
+            <div id="sign">
+                <ul>
+                    <li><a href="login.html">Sign in</a></li>
+                    <li><a href="signup.html">Sign up</a></li>
+                </ul>
+            </div>
             <div id="user">
                 <ul>
                     <li>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="userProfile.php">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
@@ -40,7 +49,7 @@
             </div>
         </div>
         <ul id="nav">
-            <li><a href="">HOME</a>
+            <li><a href="homepage.php">HOME</a>
             <li><a href="">STYLE</a>
                 <ul class="subnav">
                     <li><a href="#">Western</a></li>
@@ -78,10 +87,10 @@
                                 <img src="img/profile-picture.png">
                             </div>
                             <div class="accounttab">
-                                <p><a class="accountp" href="userProfile.html">Personal Profile</a></p>
-                                <p><a class="accountp" href="userProfileEdit.html">Edit Profile</a></p>
-                                <p><a class="accountp" href="recipeUpload.html">Upload Recipe</a></p>
-                                <p><a class="accountp" href="viewRecipe.html">View Recipe</a></p>
+                                <p><a class="accountp" href="userProfile.php">Personal Profile</a></p>
+                                <p><a class="accountp" href="userProfileEdit.php">Edit Profile</a></p>
+                                <p><a class="accountp" href="recipeUpload.php">Upload Recipe</a></p>
+                                <p><a class="accountp" href="viewRecipe.php">View Recipe</a></p>
                             </div>
                         </div>
                     </div>

@@ -994,7 +994,15 @@ span{
 .profileinfo img{
     width: 100px;
     height: 100px;
-    margin: 10px 50% 20px auto;
+    margin: 10px 40px 20px auto;
+    border-radius: 50%;
+    float: left;
+    cursor: pointer;
+}
+
+#imageUpload{
+    margin-top: 80px;
+    display: none;
 }
 
 .info{
@@ -1075,6 +1083,7 @@ span{
     float: left;
     margin-left: 40px;
     margin-right: 25px;
+    margin-bottom: 40px;
 }
 
 .recipe-bottom img{
@@ -1106,15 +1115,11 @@ span{
     width: 80%;
 }
 
-.upload-page .re-img{
-    width: 123px;
-    height: 83px;
-    background-color: #f4f4f4;
-    margin-bottom: 20px;
-}
-
-.upload-page img{
-    padding: 30px 50px;
+#recipeImg{
+    margin: 10px 10px 20px 10px;
+    cursor: pointer;
+    max-width: 300px;
+    max-height: 200px;
 }
 
 .up-recipe{

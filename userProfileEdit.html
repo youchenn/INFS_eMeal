@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +13,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
        $(document).ready(function(){
            $("#user").hide();
@@ -20,6 +25,18 @@
             $("#user").show();
         });
         <?php }?>
+        function F_Open_file(id){
+            document.getElementById(id).click();
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#profile-img')
+                        .attr('src', e.target.result);
+                }; reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 </head>
 <body>
@@ -27,12 +44,18 @@
         <div id="title">
             <div class="addthis_inline_share_toolbox_20fu"></div>
             <p>e<span>MEAL</span></p>
+            <div id="sign">
+                <ul>
+                    <li><a href="login.html">Sign in</a></li>
+                    <li><a href="signup.html">Sign up</a></li>
+                </ul>
+            </div>
             <div id="user">
                 <ul>
                     <li>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="userProfile.php">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
@@ -40,7 +63,7 @@
             </div>
         </div>
         <ul id="nav">
-            <li><a href="">HOME</a>
+            <li><a href="homepage.php">HOME</a>
             <li><a href="">STYLE</a>
                 <ul class="subnav">
                     <li><a href="#">Western</a></li>
@@ -74,13 +97,13 @@
                     <div class="col-md-2">
                         <div class="profile-menu">
                             <div class="leftprofile">
-                                <img src="img/profile-picture.png">
+                                <img src="img/profile-picture.png" alt="profile image">
                             </div>
                             <div class="accounttab">
-                                <p><a class="accountp" href="userProfile.html">Personal Profile</a></p>
-                                <p><a class="accountp" href="userProfileEdit.html">Edit Profile</a></p>
-                                <p><a class="accountp" href="recipeUpload.html">Upload Recipe</a></p>
-                                <p><a class="accountp" href="viewRecipe.html">View Recipe</a></p>
+                                <p><a class="accountp" href="userProfile.php">Personal Profile</a></p>
+                                <p><a class="accountp" href="userProfileEdit.php">Edit Profile</a></p>
+                                <p><a class="accountp" href="recipeUpload.php">Upload Recipe</a></p>
+                                <p><a class="accountp" href="viewRecipe.php">View Recipe</a></p>
                             </div>
                         </div>
                     </div>
@@ -89,7 +112,10 @@
                             <table class="profile-info">
                                 <tr>
                                     <td class="infotab">Profile picture:</td>
-                                    <td><img src="img/profile-picture.png"></td>
+                                    <td>
+                                        <img id="profile-img" src="img/profile-picture.png" alt="profile image" onclick="F_Open_file('imageUpload')">
+                                        <input id="imageUpload" type="file" onchange="readURL(this);">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="infotab">Nick name:</td>
@@ -132,7 +158,7 @@
                         </div>
                     </div>
                 </div>   
-            </div>
+            </div> 
     </div>
     <div id="footer">
             <p>&copy;2018 eMeal Company. All Rights Reserved</p>

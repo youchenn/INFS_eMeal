@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +14,17 @@
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function(){
+           $("#user").hide();
+       });
+        <?php  if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){?>
+        $(document).ready(function(){
+          $("#sign").hide(); 
+            $("#user").show();
+        });
+        <?php }?>
+    </script>
 </head>
 <body>
     <div id="navigation">
@@ -19,13 +33,24 @@
             <p>e<span>MEAL</span></p>
             <div id="sign">
             <ul>
-                <li><a href="#">Sign in</a></li>
-                <li><a href="#">Sign up</a></li>
+                <li><a href="login.html">Sign in</a></li>
+                <li><a href="signup.html">Sign up</a></li>
             </ul>
+            </div>
+            <div id="user">
+                <ul>
+                    <li>
+                        Welcome, <a><?php echo $_SESSION['user']?></a>
+                            <ul class="subnav2">
+                                <li><a href="userProfile.php">Profile</a></li>
+                                <li><a href="includes/logout.php">Log out</a></li>
+                            </ul>
+                    </li>                
+                </ul>
             </div>
         </div>
         <ul id="nav">
-            <li><a href="">HOME</a>
+            <li><a href="homepage.php">HOME</a>
             <li><a href="">STYLE</a>
                 <ul class="subnav">
                     <li><a href="#">Western</a></li>

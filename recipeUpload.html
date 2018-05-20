@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +24,18 @@
             $("#user").show();
         });
         <?php }?>
+        function F_Open_file(id){
+            document.getElementById(id).click();
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#recipeImg')
+                        .attr('src', e.target.result);
+                }; reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 </head>
 <body>
@@ -28,12 +43,18 @@
         <div id="title">
             <div class="addthis_inline_share_toolbox_20fu"></div>
             <p>e<span>MEAL</span></p>
+            <div id="sign">
+                <ul>
+                    <li><a href="login.html">Sign in</a></li>
+                    <li><a href="signup.html">Sign up</a></li>
+                </ul>
+            </div>
             <div id="user">
                 <ul>
                     <li>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="userProfile.php">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
@@ -41,7 +62,7 @@
             </div>
         </div>
         <ul id="nav">
-            <li><a href="">HOME</a>
+            <li><a href="homepage.php">HOME</a>
             <li><a href="">STYLE</a>
                 <ul class="subnav">
                     <li><a href="#">Western</a></li>
@@ -79,7 +100,9 @@
                 </tr>
                 <tr>
                     <td class="lefttab">Recipe picture:</td>
-                    <td><div class="re-img"><img src="img/icons8-plus-24.png"></div></td>
+                    <td>
+                        <img id="recipeImg" src="img/icons8-plus-40.png" alt="recipe image" onclick="F_Open_file('imageUpload')">
+                        <input id="imageUpload" type="file" onchange="readURL(this);"></td>
                 </tr>
                 <tr>
                     <td class="lefttab">Author:</td>
