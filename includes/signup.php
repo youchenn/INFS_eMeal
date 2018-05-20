@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 	// Error handlers
 	// Check for empty fields
 	if (empty($email) || empty($uNickname) || empty($pwd)) {
-		echo 'Empty imputs!';
+		echo 'Empty inputs!';
         header("Refresh: 1; url= ../signup.html");
 		exit();
 	} else {
