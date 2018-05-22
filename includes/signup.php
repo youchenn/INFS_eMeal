@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 			// Check if input characters are valid
 			if (!preg_match("/^[a-zA-Z]*$/", $uNickname)) {
 				echo 'Invalid nickname!';
-                header("Refresh: 1; url= ../signup.html");
+                header("Refresh: 1; url= ../signup.php");
 				exit();
 			} else {
 				//Check if email is valid

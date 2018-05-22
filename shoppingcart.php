@@ -1,3 +1,21 @@
+<?php
+    session_start();
+    $_SESSION["userId"] = 1;
+    $con = mysqli_connect("localhost","root","","emeal");
+    if (isset($_GET["action"])){
+        if ($_GET["action"] == "delete"){
+            
+
+                    $uid = $_SESSION["userId"];
+                    $pid = $_GET["id"];
+                    $deletecart_query = "DELETE FROM `cart` WHERE `pId` = '$pid' AND `uId` = '$uid'";
+                    $delete_result = mysqli_query($con, $deletecart_query);
+                    echo '<script>alert("Product has been Removed...!")</script>';
+                    echo '<script>window.location="shoppingcart.php"</script>';
+                }
+          
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,9 +56,13 @@
             });
             
             $(".detail-page").find(".list_box").each(function(){
-            var price = fmoney($(this).children().children().find(".item_price").text(),2);
+            var itemprice = $(this).children().children().find(".item_price").text();
+            var number = $(this).children().children().find(".num").val();
+            var price= fmoney(itemprice * number,2);
+            $(this).children().children().find(".item_price").text(fmoney(itemprice,2));
             $(this).children().children().find(".item_total").text(price);
             });
+            
             
             
             $(".min").click(function(){
@@ -98,7 +120,7 @@
                 </ul>
             </li>
             <li><a href="">BOX SIZE</a></li>
-            <li class="active"><a href="">SHOPPING</a></li>
+            <li class="active"><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />
@@ -107,7 +129,7 @@
     <div class="gray">
         <div class="tabbar">
             <ol class="breadcrumb">
-               <li><a href="shoppinggeneral.html">Shopping</a></li>
+               <li><a href="shoppinggeneral.php">Shopping</a></li>
 	           <li class="active">Cart</li>
             </ol>
         </div>
@@ -124,21 +146,29 @@
                     <div class="col-md-1"><p>Remove</p></div>
                 </div>
                 </div>
+                <?php
+                $uid = $_SESSION['userId'];
+                $total = 0;
+                $retrievefromcart_query = "SELECT a.pId, b.productName, a.quantity, b.productPrice, b.productImage FROM cart a,product b WHERE a.pId = b.productId AND a.uId = '$uid';";
+                $retrieve_result = mysqli_query($con,$retrievefromcart_query);
+                if(mysqli_num_rows($retrieve_result) > 0) {
+    
+                    while ($cartrow = mysqli_fetch_array($retrieve_result)) {
+                        ?>
                 <div class="list_box">
                     <div class="row">
                         <div class="col col-md-2">
-                            <img src="img/mailchimp-image-26.png" alt="Item img">
+                            <img src="productimage/<?php echo $cartrow["productImage"];?>" alt="Item img">
                         </div>
                         <div class="col col-md-3">
-                            <p class="item_name">Name</p>
+                            <p class="item_name"><?php echo $cartrow['productName']; ?></p>
                         </div>
-                        <div class="col col-md-1 unit_price">
-                            <p class="dollar_sign">&#36;</p><p class="item_price">20.00</p>
+                        <div class="col col-md-1 unit_price"><p class="dollar_sign">&#36;</p><p class="item_price"><?php echo $cartrow['productPrice']; ?></p>
                         </div>
                         <div class="col col-md-2">
                             <div class="quantity_num">
                                 <em class="min">-</em>
-                                <input type="text" value="1" class="num"/>
+                                <input type="text" value="<?php echo $cartrow['quantity']; ?>" class="num"/>
                                 <em class="add">+</em>
                             </div>
                         </div>
@@ -148,66 +178,14 @@
                            </div>
                         </div>
                         <div class="col col-md-1">
-                            <input type="button" value="x" class="remove_btn">
+                            <a href="shoppingcart.php?action=delete&id=<?php echo $cartrow["pId"]; ?>"><span
+                                        class="remove_btn">x</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="list_box">
-                    <div class="row">
-                        <div class="col col-md-2">
-                            <img src="img/mailchimp-image-26.png" alt="Item img">
-                        </div>
-                        <div class="col col-md-3">
-                            <p class="item_name">Name</p>
-                        </div>
-                        <div class="col col-md-1 unit_price">
-                            <p class="dollar_sign">&#36;</p><p class="item_price">18.00</p>
-                        </div>
-                        <div class="col col-md-2">
-                            <div class="quantity_num">
-                                <em class="min">-</em>
-                                <input type="text" value="1" class="num"/>
-                                <em class="add">+</em>
-                            </div>
-                        </div>
-                        <div class="col col-md-2">
-                            <div class="sign_price">
-                            <p class="dollar_sign">&#36;</p><p class="item_total">Total</p>
-                            </div>
-                        </div>
-                        <div class="col col-md-1">
-                            <input type="button" value="x" class="remove_btn"/>
-                        </div>
-                    </div>
-                </div>
-                                <div class="list_box">
-                    <div class="row">
-                        <div class="col col-md-2">
-                            <img src="img/mailchimp-image-26.png" alt="Item img">
-                        </div>
-                        <div class="col col-md-3">
-                            <p class="item_name">Name</p>
-                        </div>
-                        <div class="col col-md-1 unit_price">
-                            <p class="dollar_sign">&#36;</p><p class="item_price">14.00</p>
-                        </div>
-                        <div class="col col-md-2">
-                            <div class="quantity_num">
-                                <em class="min">-</em>
-                                <input type="text" value="1" class="num"/>
-                                <em class="add">+</em>
-                            </div>
-                        </div>
-                        <div class="col col-md-2">
-                            <div class="sign_price">
-                            <p class="dollar_sign">&#36;</p><p class="item_total">Total</p>
-                            </div>
-                        </div>
-                        <div class="col col-md-1">
-                            <input type="button" value="x" class="remove_btn"/>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                }?>
                 <div class="checkout">
                    <div class="check_price">
                         <p><span>Total price</span></p><div class="sign_price">

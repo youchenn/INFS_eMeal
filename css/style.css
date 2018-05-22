@@ -515,7 +515,7 @@ span{
     clear: both;
     border: solid 1px #adadad;
     width: 160px;
-    margin: 0 50px;
+    margin: 0 50px 20px 50px;
     background-color: white;
 }
 
@@ -534,6 +534,7 @@ span{
 
 .shopping-list .recipe-box{
     border-radius: 0%;
+    margin-bottom: 40px;
 }
 
 .shopping-list .recipe-box .recipe-img{
@@ -545,13 +546,23 @@ span{
     transition: all 0.6s;
 }
 
+.shopping-list .recipe-box p{
+    text-align: center;
+    font-size: 1.1em;
+    margin:10px auto;
+}
+
+.shopping-list .recipe-box .quantity_num{
+    margin: 30px auto;
+}
+
 .shopping-list .recipe-box:hover .recipe-img{
     transform: scale(1.1);
 }
 
 .shopping-list .recipe-box .recipe-btn{
     border-radius: 0%;
-    margin-left: 25%;
+    margin:10px auto;
     width: 100px;
 }
 

@@ -103,7 +103,7 @@ if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){
                     ?>
                 </ul>
             </li>
-            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
+            <li><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />

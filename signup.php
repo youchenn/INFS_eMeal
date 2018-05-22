@@ -9,8 +9,16 @@
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
+        <script type="text/javascript">      
+            function checkForm(frm){ if($("#email").val()==""||$("#nickname").val()==""||$("#password").val()==""){
+                    alert("Empty inputs!");
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <div id="navigation">
@@ -51,8 +59,8 @@
             <section class="background">
                 <div id="log_bg"></div>
                 <div class="signup-card">
-                    <div class="container">
-                        <form action ="includes/signup.php" method="POST">
+                   <form action ="includes/signup.php" method="POST" onsubmit="return checkForm();" id="frm">
+                    <div class="container"> 
                             <div class="row">
                                 <div class="col">
                                     <p class="second-heading">Sign up</p>
@@ -62,25 +70,25 @@
                                     <p class="third-heading">Email</p>
                             </div>
                             <div class="row">
-                                <input class="login-input" type="text" name="email" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your email address'">
+                                <input id="email" class="login-input" type="text" name="email" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your email address'">
                             </div>
                             <div class="row">
                                     <p class="third-heading">Nickname</p>
                             </div>
                             <div class="row">
-                                <input class="login-input" type="text" name="nickname" placeholder="Nickname" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your nickname'">
+                                <input id="nickname" class="login-input" type="text" name="nickname" placeholder="Nickname" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your nickname'">
                             </div>
                             <div class="row">
                                     <p class="third-heading">Password</p>
                             </div>
                             <div class="row">
-                                <input class="login-input" type="password" name="pwd" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your password'">
+                                <input id="password" class="login-input" type="password" name="pwd" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your password'">
                             </div>
                             <div class="row">
                                     <button class="signup-submit" type="submit" name="submit">Sign up</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </section>
         </div>
