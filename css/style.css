@@ -129,6 +129,22 @@ span{
     display: block;
 }
 
+#shoppingcart{
+    width: 20%;
+    float: right;
+    margin-top: 25px;
+}
+#shoppingcart img{
+    float: left;
+    margin-right: 20px;
+}
+
+#shoppingcart p{
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+
 #search-form { 
     width: 20%; 
     float: left;
@@ -520,16 +536,23 @@ span{
 }
 
 .sidebar h4{
-     background:#d8d8d8;
+    background:#d8d8d8;
     padding: 10px;
     margin-top: 0px;
     text-align: center;
 }
 
-.sidebar .checkbox {
+.sidebar a{
     display: block;
+    text-align: center;
     margin: 15px 35px;
     font-size: 1.2em;
+    color: black;
+}
+
+.sidebar a:hover{
+    color: #f7ad18;
+    border-bottom: solid 1px #f7ad18;
 }
 
 .shopping-list .recipe-box{
