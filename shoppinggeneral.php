@@ -2,7 +2,6 @@
     include "includes/db.php";
     session_start();
     $_SESSION["userId"] = 1;
-    $con = mysqli_connect("localhost","root","","emeal");
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,7 +65,7 @@
                 </ul>
             </li>
             <li><a href="">BOX SIZE</a></li>
-            <li class="active"><a href="">SHOPPING</a></li>
+            <li class="active"><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
         <div id="shoppingcart">
            <a href="shoppingcart.php">

@@ -370,7 +370,7 @@ span{
 }
 
 .title{
-    margin: 10px auto;
+    margin: 10px auto 40px auto;
     font-size: 2.4em;
     text-align: center;
 }
@@ -507,6 +507,7 @@ span{
 
 .recipe-list .recipe-box{
     border-radius: 0%;
+    margin-bottom: 40px;
 }
 
 .recipe-list .recipe-box .recipe-img{
@@ -585,26 +586,10 @@ span{
 
 .shopping-list .recipe-box .recipe-btn{
     border-radius: 0%;
-    margin:10px auto;
+    margin:25px auto;
     width: 100px;
 }
 
-.shopping-list .recipe-box .shop-btn{
-    color: #f7ad18;
-    display: block;
-    text-align: center;
-    font-size: 1em;
-    width: 100px;
-    padding:11px;
-    border: solid 1px #f7ad18;
-    margin-top:79px;
-    text-decoration: none;
-}
-
-.shopping-list .recipe-box .shop-btn:hover{
-    background-color: #f7ad18;
-    color: white;
-}
 
 /*shopping detail*/
 .detail-page{
@@ -664,6 +649,7 @@ span{
     width: 110px;
     line-height: 25px;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .quantity_num em{
@@ -695,7 +681,7 @@ span{
 
 .detail-page .recipe-btn{
     border-radius: 0;
-    margin:25px auto 0px 0px;
+    margin:auto auto 0px 0px;
 }
 
 #goods_detail{
@@ -736,7 +722,7 @@ span{
     border-radius: 10px;
 }
 
-.comment_box{
+.comment_list .comment_box{
     width: 100%;
     margin-top: 40px;
     background-color: #f4f4f4;

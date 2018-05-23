@@ -1,7 +1,8 @@
 <?php
 session_start();
-?>
-$connect = mysqli_connect("localhost", "root", "", "emeal");  
+$connect = mysqli_connect("localhost", "root", "", "emeal"); 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,8 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
             $("#user").show();
         });
         <?php }?>
+    </script>
+    <script>
         $(function (){
             $(".like").click(function(){
                 var input = $(this).find('.count');
@@ -61,7 +64,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                         ?>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="userProfile.php">Profile</a></li>
+                                <li><a href="userProfile.html">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
@@ -91,43 +94,56 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
             <input type="text" placeholder="Search Here" />
         </form>
     </div>
+    <form method="post" action="recipeinfo.php?id=<?php echo $_GET['recipe'];?>">
+        <?php if(isset($_GET['recipe'])){
+        $sql = "SELECT * FROM recipe WHERE recipeId = '$_GET[recipe]'";
+        $result = mysqli_query($connect, $sql);
+        while($row=mysqli_fetch_array($result))
+        {?>
     <div class="gray">
         <div class="tabbar">
             <ol class="breadcrumb">
                 <li><a href="recipegeneral.html">Recipe</a></li>
-                <li class="active">Detail</li>
+                <li class="active"><?php echo $row["recipeName"];?></li>
             </ol>
         </div>
         <div class="detail-page">
             <div class="row">
                 <div class="col-md-5">
                     <div class="img-wrapper">
-                        <img class="item-img" src="img/school-lunch1.jpg" alt="recipeImg">
+                        <img class="item-img" src="recipeimage/<?php echo $row["img"];?>" alt="recipeImg">
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="right_detail">
-                        <h3 class="recipe_name">Simple tortilla rolls</h3>
+                        <h3 class="recipe_name"><?php echo $row["recipeName"]?></h3>
                         <button class="like">
                             <img class="like-img" src="img/Like.png">
                             <i class="fa fa-thumbs-o-up"></i>Like <input class="count" name="like-count" readonly="readonly" type="text" value="0">
+                            <?php echo $row["recipeLikeNum"]?>
                         </button>
                         <table class="recipe_info">
                             <tr>
                                 <td>Author:</td>
-                                <td>Annie</td>
+                                <td><?php 
+                                    $userId = $row["userId"];
+                                    $query = "SELECT userNickname FROM user WHERE userId = '$userId'";
+                                    $author = mysqli_query($connect, $query);
+                                    $authorname = mysqli_fetch_array($author);
+                                    echo $authorname["userNickname"];
+                                    ?></td>
                             </tr>
                             <tr>
                                 <td>Date:</td>
-                                <td>12/05/2018</td>
+                                <td><?php echo $row["recipeTime"]?></td>
                             </tr>
                             <tr>
                                 <td>Size:</td>
-                                <td>500ml</td>
+                                <td><?php echo $row["recipeSize"]?>ml</td>
                             </tr>
                             <tr>
                                 <td>Style:</td>
-                                <td>Western</td>
+                                <td><?php echo $row["recipeCategory"]?></td>
                             </tr>
                         </table>
                     </div>
@@ -145,7 +161,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="description">
-                        <p>Tortilla rolls. One has cream cheese, turkey, and cheddar. One has cream cheese and turkey. One has avocado. One has butter. It's just a tortilla, trimmed into a square, then spread with whatever the filling is, rolled, and sliced. A sweet little bunch of seedless black grapes on the side, with a heart strawberry and a (sort of) heart tomato. They all have a heart banana chocolate chip muffin, blueberries, and cheese hearts.</p>
+                        <p><?php echo $row["recipeContent"]?></p>
                     </div>
                     <div class="tab-pane fade" id="reviews">
                         <p>Nickname</p>
@@ -199,9 +215,13 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                 <img src="img/school-lunch1.jpg">
                 <p><a class="recipename" href="recipeinfo.html">Simple tortilla rolls</a></p>
             </div>
-        </div>               
+        </div>     
         <div class="clearfloat"></div>
     </div>
+        <?php
+        }
+        }?>
+    </form>
     <div id="footer">
             <p>&copy;2018 eMeal Company. All Rights Reserved</p>
         </div>

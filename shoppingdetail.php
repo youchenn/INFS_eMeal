@@ -1,7 +1,15 @@
 <?php
+    include "includes/db.php";
     session_start();
-    $_SESSION["userId"] = 1;
     $con = mysqli_connect("localhost","root","","emeal");
+    $sql = "SELECT * FROM user";
+    $result = mysqli_query($con, $sql);
+        while($row = mysqli_fetch_array($result)){
+            if($_SESSION['user']== $row['userEmail'])
+            {
+                $_SESSION['user']=$row['userNickname'];
+            }
+        }
     if (isset($_POST["add"])){
         if (isset($_SESSION["cart"])){
             $item_array_id = array_column($_SESSION["cart"],"product_id");
@@ -51,6 +59,7 @@
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script>
         $(document).ready(function(){
             $(".add").click(function(){
@@ -67,43 +76,47 @@
                 if(num==0){ return}
                 $(this).next().val(num);
             });
+            $("#user").hide();
         });
+        <?php if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){?>
+            $(document).ready(function(){
+                $("#sign").hide(); 
+                $("#user").show();
+                });
+        <?php }?>
     </script>
 </head>
 <body>
+  <input class="getUser" type="hidden" name="hidden_id" value="<?php echo $_SESSION['user']?>">
     <div id="navigation">
         <div id="title">
             <div class="addthis_inline_share_toolbox_20fu"></div>
             <p>e<span>MEAL</span></p>
             <div id="sign">
-            <ul>
-                <li><a href="login.html">Sign in</a></li>
-                <li><a href="#">Sign up</a></li>
-            </ul>
+                <ul>
+                    <li><a href="login.html">Sign in</a></li>
+                    <li><a href="signup.php">Sign up</a></li>
+                </ul>
+            </div>
+            <div id="user">
+                <ul>
+                    <li>
+                        Welcome, <a><?php echo $_SESSION['user']?></a>                           
+                            <ul class="subnav2">
+                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="includes/logout.php">Log out</a></li>
+                            </ul>
+                    </li>                
+                </ul>
             </div>
         </div>
-        <ul id="nav">
-            <li><a href="homepage.php">HOME</a>
-            <li><a href="">STYLE</a>
-                <ul class="subnav">
-                    <li><a href="#">Western</a></li>
-                    <li><a href="#">Chinese</a></li>
-                    <li><a href="#">Japanese</a></li>
-                </ul>
-            </li>
-            <li><a href="">PURPOSE</a>
-                <ul class="subnav">
-                    <li><a href="#">Fitness</a></li>
-                    <li><a href="#">Meat lover</a></li>
-                    <li><a href="#">Vegetarian</a></li>
-                </ul>
-            </li>
-            <li><a href="">BOX SIZE</a></li>
-            <li class="active"><a href="shoppinggeneral.php">SHOPPING</a></li>
-        </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="get_nav"></div>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>
     </div>
     <form method="post" action="shoppingdetail.php?item=<?php echo $_GET['item'];?>action=add&id=<?php echo $_GET['item']; ?>">
     <?php
@@ -135,6 +148,7 @@
                         <input name="quantity" type="text" value="1" class="num"/>
                         <em class="add">+</em>
                     </div>
+                    <input class="getID" type="hidden" name="hidden_id" value="<?php echo $row["productId"];?>">
                     <input type="hidden" name="hidden_name" value="<?php echo $row["productName"];?>">
                         <input type="hidden" name="hidden_price" value="<?php echo $row["productPrice"];?>">
                     <input type="submit" name="add" style="margin-top: 5px;" class="recipe-btn" value="Add to Cart">
@@ -155,29 +169,17 @@
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="description">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p><?php echo $row["productDetails"]?></p>
                     </div>
                     <div class="tab-pane fade" id="reviews">
-                        <p>Nickname</p>
-                        <input class="login-input" onfocus="this.value=''" onblur="this.value='Please enter your nickname'" value="Please enter your nickname">
                         <p>Review</p>
-                        <textarea onfocus="this.value=''" onblur="this.value='Please leave your review'">Please leave your review</textarea>
-                        <input class="signup-submit" type="submit">
+                        <textarea class="review"></textarea>
+                        <input type="hidden" class="date" name="hidden_name" value="<?php date_default_timezone_set('Australia/Brisbane');
+                        echo date('Y-m-d');
+                        ?>">
+                        <button class="signup-submit reviewSubmit">Submit</button>
                         <div class="comment_list">
-                          <div class="comment_box">
-                           <div class="comment_detail">
-                           <p class="comment_name">John Doe</p>
-                           <p class="comment_date">15 May, 2018</p>
-                           <p class="comment_content">Good product！</p> 
-                              </div>
-                           </div>
-                           <div class="comment_box">
-                           <div class="comment_detail">
-                           <p class="comment_name">John Doe</p>
-                           <p class="comment_date">15 May, 2018</p>
-                           <p class="comment_content">Good product！</p> 
-                              </div>
-                           </div>
+                        <div id="get_productReview"></div>
                         </div>
                     </div>
                 </div>

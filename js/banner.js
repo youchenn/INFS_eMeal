@@ -22,8 +22,9 @@ $(document).ready(function(){
 		index--
 		if(index<0){index=2}
 		$('.img').eq(index).fadeIn(1000).siblings().fadeOut(1000)
-		$('.dot').eq(index).addClass('dt').siblings().removeClass('dt')
+        $('.dot').eq(index).addClass('dt').siblings().removeClass('dt')
 	})
+    
 	$('.btn_r').click(function(){
 		index++
 		if(index>2){index=0}

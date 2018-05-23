@@ -16,6 +16,7 @@ error_reporting(0);
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/banner.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
        $(document).ready(function(){
            $("#user").hide();
@@ -89,7 +90,7 @@ error_reporting(0);
                     ?>
                 </ul>
             </li>
-            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
+            <li><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />
@@ -183,7 +184,7 @@ error_reporting(0);
                     ?>
                 </ul>
             </li>
-            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
+            <li><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />
@@ -208,7 +209,7 @@ error_reporting(0);
             while($row = mysqli_fetch_array($result)){?>
         <div class="recipe-list">
             <div class="recipe-box">
-                <img class="recipe-img" src="<?php echo $row["img"]?>" alt="">
+                <a><img class="recipe-img" src="<?php echo $row["img"]?>" alt=""></a>
                 <p class="recipe-brief"><?php echo $row["recipeName"]?></p>
                 <a class="recipe-btn" href="#">More</a>
             </div>
@@ -276,7 +277,7 @@ error_reporting(0);
                     ?>
                 </ul>
             </li>
-            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
+            <li><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />

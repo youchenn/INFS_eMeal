@@ -122,9 +122,12 @@
             <li><a href="">BOX SIZE</a></li>
             <li class="active"><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>
     </div>
     <div class="gray">
         <div class="tabbar">
