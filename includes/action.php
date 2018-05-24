@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$ip_add = getenv("REMOTE_ADDR");
 include "db.php";
 //load the sizes at the side
 if(isset($_POST["size"])){
@@ -83,8 +84,7 @@ if(isset($_POST["get_selected_Category"])){
 if(isset($_POST["addToCart"])){
 
 	$p_id = $_POST["proId"];
-	$user_id = 1;
-	$ip_add = "thisisipadd";
+	$user_id = $_SESSION["userId"];
 
 	$sql = "SELECT * FROM cart WHERE `pId` = '$p_id' AND `uId` = '$user_id'";
 	$run_query = mysqli_query($conn,$sql);
@@ -165,7 +165,7 @@ if(isset($_POST["recipe"])){
 //navigation bar
 if(isset($_POST["getnav"])){
     echo "<ul id='nav'>";
-    echo "<li><a href='homepage.php' class='active'>HOME</a>";
+    echo "<li><a href='homepage.php'>HOME</a>";
     echo "<li><a href='recipegeneral.php?cate=all'>STYLE</a>";
     echo "<ul class='subnav'>";
     $sql = "SELECT * FROM category";
@@ -213,5 +213,255 @@ if(isset($_POST["lrecipe"])){
             </div>
             ";
         }
+    }
+}
+
+//show signup status
+if(isset($_POST["getsignup"])){
+    $status = $_POST["sid"];
+    switch($status){
+        case "invalid":
+                echo "<div class='row'>
+                <div class='col'>
+                    <p class='second-heading'>Invalid Nickname</p>
+                </div>
+            </div>
+            <div class='row'>
+                <a href='signup.php' class='signup-submit'>Back</a>
+            </div>
+            ";
+            break;
+        case "email":
+            echo "<div class='row'>
+                <div class='col'>
+                    <p class='second-heading'>Invalid Email</p>
+                </div>
+            </div>
+            <div class='row'>
+                <a href='signup.php' class='signup-submit'>Back</a>
+            </div>";
+            break;
+        case "usertaken":
+            echo "<div class='row'>
+                <div class='col'>
+                    <p class='second-heading'>Username has been taken</p>
+                </div>
+            </div>
+            <div class='row'>
+                <a href='signup.php' class='signup-submit'>Back</a>
+            </div>";
+            break;
+        case "unverifiedemail":
+            echo "<div class='row'>
+                <div class='col'>
+                    <p class='second-heading'>Please verify your email</p>
+                </div>
+            </div>
+            <div class='row'>
+                <a href='homepage.php' class='signup-submit'>Back</a>
+            </div>";
+            break;
+        case "wrongpwd":
+            echo "<div class='row'>
+                <div class='col'>
+                    <p class='second-heading'>Wrong password</p>
+                </div>
+            </div>
+            <div class='row'>
+                <a href='login.html' class='signup-submit'>Back</a>
+            </div>";
+            break;
+    }
+}
+
+//load the recipecomment
+if(isset($_POST["getRecipe"])){
+    $rid = $_POST['rid'];
+    $productReview_query = "SELECT * FROM comment a, user b WHERE a.userId = b.userId AND a.recipeId = $rid ORDER BY commentId DESC";
+    $run_query = mysqli_query($conn,$productReview_query);
+    if(mysqli_num_rows($run_query) > 0){
+       while($row = mysqli_fetch_array($run_query)){
+           $cid=$row['commentId'];
+           $comment=$row['commentContent'];
+           $name = $row['userNickname'];
+           $date = $row['commentDateTime'];
+           echo "<div class='comment_box'>";
+           echo "<div class='comment_detail'><p class='comment_name'>$name</p><p class='comment_date'>$date</p><p class='comment_content'>$comment</p></div></div>";
+       }
+   }
+}
+
+//Insert comment
+if(isset($_POST["add_comment"])){
+    $rid = $_POST["rid"];
+    $username = $_POST["uname"];
+    $comment = $_POST["comment"];
+    $date = $_POST["date"];
+    $user_query = "SELECT * FROM user WHERE userNickname = '$username'";
+    $run_query = mysqli_query($conn,$user_query);
+    while($row = mysqli_fetch_array($run_query)){
+        $uid = $row["userId"];
+    }
+    $insert_sql = "INSERT INTO `comment` (`userId`, `recipeId`, `commentContent`, `commentDateTime`) VALUES ('$uid', '$rid', '$comment', '$date')";
+    $insert_result = mysqli_query($conn, $insert_sql);
+    $productReview_query = "SELECT * FROM comment a, user b WHERE a.userId = b.userId AND a.recipeId = $rid ORDER BY commentId DESC";
+    $run_query = mysqli_query($conn,$productReview_query);
+    if(mysqli_num_rows($run_query) > 0){
+       while($row = mysqli_fetch_array($run_query)){
+           $cid=$row['commentId'];
+           $comment=$row['commentContent'];
+           $name = $row['userNickname'];
+           echo "<div class='comment_box'>";
+           echo "<div class='comment_detail'><p class='comment_name'>$name</p><p class='comment_date'>$date</p><p class='comment_content'>$comment</p></div></div>";
+       }
+   }
+}
+
+//get like number
+if(isset($_POST["likenum"])){
+
+$rec_id = $_POST['recipe_id'];
+$sql = "SELECT * FROM `recipe` WHERE `recipeId` = $rec_id";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result)>0){
+while($row = mysqli_fetch_array($result)){
+$recipe_id = $row["recipeId"];
+$recipe_like = $row["recipeLikeNum"];
+
+echo "<p class='recipe-like'>$recipe_like liked this</p >";
+}
+}
+
+}
+
+//add like number
+if(isset($_POST["add_like"])){
+
+    if(!empty($_SESSION["userId"])){
+
+    $user_id = $_SESSION["userId"];
+    $rec_id = $_POST['recipe_id'];
+        //check if user liked before or not
+    $existsql = "SELECT * FROM likebtntable WHERE `userId` = '$user_id' AND `recipeId` ='$rec_id'";
+        $result_existsql = mysqli_query($conn, $existsql);
+        if(mysqli_num_rows($result_existsql)<1){
+
+            $sql = "SELECT * FROM `recipe` WHERE `recipeId` = $rec_id";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result)>0){
+                while($row = mysqli_fetch_array($result)){
+                    $recipe_id = $row["recipeId"];
+                    $recipe_like = $row["recipeLikeNum"];
+                    $newlike = $recipe_like + 1;
+                    //update the new like number
+                    $newsql = "UPDATE `recipe` SET `recipeLikeNum` = $newlike WHERE `recipeId` = $recipe_id";
+                    $result_newsql = mysqli_query($conn, $newsql);
+                    //insert the like ocurance into likebtntable
+                    $insertlikesql = "INSERT INTO `likebtntable`(`likeId`, `recipeId`, `userId`) VALUES (NULL,'$recipe_id','$user_id')";
+                    $result_insertlikesql = mysqli_query($conn, $insertlikesql);
+                    $sql = "SELECT * FROM `recipe` WHERE `recipeId` = $recipe_id";
+                    $result = mysqli_query($conn, $sql);
+                    if(mysqli_num_rows($result)>0){
+                        while($row = mysqli_fetch_array($result)){
+                            $recipe_id = $row["recipeId"];
+                            $recipe_like = $row["recipeLikeNum"];
+                            echo "<p class='recipe-like'>$recipe_like liked this</p >";
+                        }
+
+                    } 
+
+                }
+            }
+        } else {
+            $rec_id = $_POST['recipe_id'];
+            $sql = "SELECT * FROM `recipe` WHERE `recipeId` = $rec_id";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result)>0){
+                while($row = mysqli_fetch_array($result)){
+                    $recipe_id = $row["recipeId"];
+                    $recipe_like = $row["recipeLikeNum"];
+
+                    echo "<p class='recipe-like'>$recipe_like liked this</p >";
+                }
+            }
+        }
+    }
+    else{
+        echo "<alert> Please login first. </alert>";
+    }
+
+    }
+
+
+//show shipping info
+if(isset($_POST["confirm"])){
+    $name = $_POST["name"];
+    $address = $_POST["address"];
+    $postcode = $_POST["postcode"];
+    $number = $_POST["number"];
+    $email = $_POST["email"];
+    $uid = $_POST["uid"];
+    $user_query = "SELECT * FROM user WHERE userId = '$uid'";
+    $run_query = mysqli_query($conn,$user_query);
+    $insert_sql = "UPDATE user SET userAddressname = '$name',  userAddress = '$address', userPostalcode = '$postcode', userContact = '$number', userEmail= '$email' WHERE userId = '$uid'";
+    $insert_result = mysqli_query($conn, $insert_sql);
+    $shipquery = "SELECT * FROM user WHERE userId = '$uid'";
+    $result = mysqli_query($conn, $shipquery);
+    if(mysqli_num_rows($result) > 0){
+        while($ship=mysqli_fetch_array($result)){
+            $name = $ship["userAddressname"];
+            $address = $ship["userAddress"];
+            $postcode = $ship["userPostalcode"];
+            $cell = $ship["userContact"];
+            $email = $ship["userEmail"];
+        
+    echo "<div class='row'>
+       <div class='col-md-8'>
+        <div class='row'>
+            <div class='col-md-2 col-xs-6'>
+                <p>Name</p>
+            </div>
+            <div class='col-md-7 col-xs-6'>
+                <p>$name</p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-2 col-xs-6'>
+                <p>Address</p>
+            </div>
+            <div class='col-md-7 col-xs-6'>
+                <p>$address</p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-2 col-xs-6'>
+                <p>Postcode</p>
+            </div>
+            <div class='col-md-7 col-xs-6'>
+                <p>$postcode</p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-2 col-xs-6'>
+                <p>Cell Number</p>
+            </div>
+            <div class='col-md-7 col-xs-6'>
+                <p>$cell</p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-2 col-xs-6'>
+                <p>E-mail</p>
+            </div>
+            <div class='col-md-7 col-xs-6'>
+                <p>$email</p>
+            </div>
+        </div>
+    </div>
+        </div>";
+    }
     }
 }

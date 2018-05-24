@@ -1,7 +1,21 @@
 <?php
 session_start();
-?>
-$connect = mysqli_connect("localhost", "root", "", "emeal");  
+$connect = mysqli_connect("localhost", "root", "", "emeal"); 
+
+$nickname = $_SESSION['user'];
+$query = "SELECT * FROM user WHERE userNickname = '$nickname'";
+$result = mysqli_query($connect,$query);
+$row = mysqli_fetch_array($result);
+$userId = $row["userId"];
+$profileimg = $row["userProfilepic"];
+if(isset($_GET["action"])){
+    if($_GET["action"] == "delete"){
+        $recipeId = $_GET["id"];
+        $deleterecipe = "DELETE FROM recipe WHERE userId = '$userId' AND recipeId = '$recipeId'";
+        $deleteresult = mysqli_query($connect, $deleterecipe);
+        header("Refresh: 1; url=viewRecipe.php");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +28,9 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
-    <script src="jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
     <script type="text/javascript">
        $(document).ready(function(){
            $("#user").hide();
@@ -35,7 +51,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
             <div id="sign">
                 <ul>
                     <li><a href="login.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="signup.php">Sign up</a></li>
                 </ul>
             </div>
             <div id="user">
@@ -60,34 +76,19 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                 </ul>
             </div>
         </div>
-        <ul id="nav">
-            <li><a href="homepage.php">HOME</a>
-            <li><a href="">STYLE</a>
-                <ul class="subnav">
-                    <li><a href="#">Western</a></li>
-                    <li><a href="#">Chinese</a></li>
-                    <li><a href="#">Japanese</a></li>
-                </ul>
-            </li>
-            <li><a href="">PURPOSE</a>
-                <ul class="subnav">
-                    <li><a href="#">Fitness</a></li>
-                    <li><a href="#">Meat lover</a></li>
-                    <li><a href="#">Vegetarian</a></li>
-                </ul>
-            </li>
-            <li><a href="">BOX SIZE</a></li>
-            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
-        </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="get_nav"></div>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>
     </div>
     <div class="clearfloat"></div>
     <div class="gray">
         <div class="tabbar">
             <ol class="breadcrumb">
-                <li ><a href="recipegeneral.html">Profile</a></li>
+                <li ><a href="userProfile.php">Profile</a></li>
                 <li class="active">View Recipe</li>
             </ol>
         </div>
@@ -96,7 +97,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                     <div class="col-md-2">
                         <div class="profile-menu">
                             <div class="leftprofile">
-                                <img src="img/profile-picture.png">
+                                <img src="<?php echo $profileimg;?>" alt="profile image">
                             </div>
                             <div class="accounttab">
                                 <p><a class="accountp" href="userProfile.php">Personal Profile</a></p>
@@ -106,40 +107,25 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                             </div>
                         </div>
                     </div>
+                    <form method="post" action="">
                     <div class="col-md-10">
                         <div class="viewrecipe">
+                            <?php
+                            $query = "SELECT * FROM recipe WHERE userId = '$userId' ORDER BY recipeTime DESC";
+                            $result = mysqli_query($connect,$query);
+                            while ($row = mysqli_fetch_array($result))
+                            {?>
                             <div class="personal-recipe">
-                                <img src="img/school-lunch1.jpg">
-                                <p><a class="recipename" href="recipeinfo.php">Simple tortilla rolls</a>
-                                <a class="edit-btn" href="recipeEdit.php">Edit</a></p>
+                                <a class="recipename" href="recipeinfo.php?recipe=<?php echo $row["recipeId"]?>"><img src="<?php echo $row["img"];?>"></a>
+                                <p><a class="recipename" href="recipeinfo.php?recipe=<?php echo $row["recipeId"]?>"><?php echo $row["recipeName"];?></a>
+                                <a class="edit-btn" href="viewRecipe.php?action=delete&id=<?php echo $row["recipeId"];?>">Delete</a>
+                                <a class="edit-btn" href="recipeEdit.php?recipe=<?php echo $row["recipeId"]?>">Edit</a>
+                                </p>
                             </div>
-                            <div class="personal-recipe">
-                                <img src="img/school-lunch1.jpg">
-                                <p><a class="recipename" href="recipeinfo.php">Simple tortilla rolls</a>
-                                <a class="edit-btn" href="recipeEdit.php">Edit</a></p>
-                            </div>
-                            <div class="personal-recipe">
-                                <img src="img/school-lunch1.jpg">
-                                <p><a class="recipename" href="recipeinfo.php">Simple tortilla rolls</a>
-                                <a class="edit-btn" href="recipeEdit.php">Edit</a></p>
-                            </div>
-                            <div class="personal-recipe">
-                                <img src="img/school-lunch1.jpg">
-                                <p><a class="recipename" href="recipeinfo.php">Simple tortilla rolls</a>
-                                <a class="edit-btn" href="recipeEdit.php">Edit</a></p>
-                            </div>
-                            <div class="personal-recipe">
-                                <img src="img/school-lunch1.jpg">
-                                <p><a class="recipename" href="recipeinfo.php">Simple tortilla rolls</a>
-                                <a class="edit-btn" href="recipeEdit.php">Edit</a></p>
-                            </div>
-                            <div class="personal-recipe">
-                                <img src="img/school-lunch1.jpg">
-                                <p><a class="recipename" href="recipeinfo.php">Simple tortilla rolls</a>
-                                <a class="edit-btn" href="recipeEdit.php">Edit</a></p>
-                            </div>
+                            <?php }?>
                         </div>
                     </div>
+                    </form>
                 </div>   
             </div>
     </div>

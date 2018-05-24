@@ -468,6 +468,10 @@ span{
     border-radius: 20px;
 }
 
+.signup_mock .signup-card{
+    margin-top: 290px;
+    margin-bottom: 100px;
+}
 .signup-card .container .row{
     width: 50%;
     margin: 2px auto;
@@ -748,27 +752,31 @@ span{
 }
 
 /*shopping cart*/
-.cart-page .list_title{
+.list_title{
     border-bottom: solid 1px #c8cccf;
     padding-bottom: 10px;
 }
 
-.cart-page .list_box{
+.list_box{
     border-bottom: solid 1px #c8cccf;
 }
 
+#confirm p{
+     text-align: center;
+    margin: 0 auto;
+}
 .cart-page p{
     text-align: center;
     margin: 0 auto;
 }
 
-.cart-page .list_box img{
+.list_box img{
     width: 90%;
     height: 100px;
     margin: 20px 5%;
 }
 
-.cart-page .list_box p{
+.list_box p{
     text-align: center;
     line-height: 140px;
 }
@@ -851,8 +859,7 @@ span{
     .sidebar .checkbox{
         margin-left: 50px;
     }
-    
-    .cart-page .list_title{
+    .list_title{
         display: none;
     }
     
@@ -1070,7 +1077,7 @@ span{
 }
 
 .recipe_info td{
-    height: 35px;
+    height: 30px;
 }
 
 .like-img{
@@ -1156,7 +1163,6 @@ span{
     outline: 0;
 }
 
-/*viewRecipe*/
 .personal-recipe{
     width: 250px;
     height: 170px;
@@ -1168,10 +1174,16 @@ span{
     width: 250px;
     height: 170px;
     border-radius: 1%;
+    cursor:pointer;
+    transition: all 0.6s;
+}
+
+.personal-recipe img:hover{
+    transform: scale(1.1);
 }
 
 .viewrecipe p{
-    margin: 5px 10px;
+    margin: 10px;
 }
 
 .recipename{
@@ -1185,6 +1197,8 @@ span{
     color: white;
     float: right;
     text-align: center;
+    border-radius: 4px;
+    margin-left: 5px;
 }
 
 .recipename:hover{
@@ -1196,6 +1210,41 @@ span{
     color: white;
 }
 
-@media only screen and (max-width:500px){
-    
+/*confirmpage*/
+#addressinfo p{
+    font-size: 1.2em;
+    line-height: 40px;
+}
+
+#addressinfo input{
+    width: 90%;
+    height: 35px;
+}
+
+#addressinfo .confirm-btn{
+    z-index: 1;
+    background-color:white;
+    color: #f29d00;
+    border-radius: 20px;
+    display: block;
+    text-align: center;
+    font-size: 1em;
+    width: 110px;
+    padding:10px;
+    height: 45px;
+    text-decoration: none;
+}
+
+#addressinfo .confirm-btn:hover{
+    background-color:#f29d00;
+    z-index: 2;
+    text-decoration: none;
+    color: white;
+}
+
+#addressinfo .recipe-btn{
+    margin: 50px auto;
+    float: right;
+    width: 160px;
+    height: 50px;
 }

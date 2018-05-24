@@ -21,20 +21,23 @@ if (isset($_POST['submit'])) {
 		if (mysqli_num_rows($result) > 0) {
 			while($row = mysqli_fetch_array($result))
 			{
+                $user_id = $row["userId"];
+                $user_nickname = $row["userNickname"];
 				if($row["userEmailStatus"] == 'verified'){
 					if(password_verify($pwd, $row["userPassword"])){
 						//return true;
-                        $_SESSION['user'] = $uid;
+                        $_SESSION['user'] = $user_nickname;
+                        $_SESSION['userId'] = $user_id;
 						header("Location: ../homepage.php?login=success");
 					}
 					else{
 						//return false
-						header("Location: ../LoginTest.html?login=wrongpwd");
+						header("Location: ../signup_mock.php?signup=wrongpwd");
 					}
 				}
 				else if ($row["userEmailStatus"] == 'not verified'){
 					//ask to verify
-					header("Location: ../LoginTest.html?login=plz_verify_email");
+					header("Location: ../signup_mock.php?signup=unverifiedemail");
 				}
 			}
 		} else {

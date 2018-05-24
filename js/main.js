@@ -6,6 +6,8 @@ $(document).ready(function(){
     getrecipe();
     getnav();
     getlatestrecipe();
+    signstatus();
+    showcomment();
     //get categories to be displayed at the side when page is loaded
     function cat(){
         $.ajax({
@@ -53,6 +55,31 @@ $(document).ready(function(){
                 $("#get_productReview").html(data);
             }
         })
+    }
+    
+    function showcomment(){
+        var recipeid = $(".recipeID").val();
+        $.ajax({
+            url :'includes/action.php',
+            method:	"POST",
+            data	:	{getRecipe:1, rid:recipeid},
+            success	:   function(data){
+                $("#get_comment").html(data);
+            }
+        })
+    }
+    
+    //show the signup status
+    function signstatus(){
+    var sid = $(".signupID").val();
+    $.ajax({
+        url :'includes/action.php',
+        method:	"POST",
+        data	:	{getsignup:1, sid:sid},
+        success	:   function(data){
+            $("#get_signup").html(data);
+        }
+    })
     }
     //showNavigation
     function getnav(){
@@ -129,5 +156,76 @@ $(document).ready(function(){
 			}
         })
     })
-      
+    
+    //add review into database
+  $("body").delegate(".commentSubmit","click",function(event){
+        var rid = $(".recipeID").val();
+        var uname = $(".getUser").val();
+        var comment = $(".comment").val();
+        var date = $(".date").val();
+		event.preventDefault();
+        $.ajax({
+            url		:	'includes/action.php',
+			method	:	"POST",
+			data	:	{add_comment:1,rid:rid,uname:uname, comment:comment,date:date},
+			success	:	function(data){
+            $("#get_comment").html(data);
+				if($("body").width() < 480){
+					$("body").scrollTop(683);
+				}
+			}
+        })
+    })
+    getlikenum();
+    //get like number to be displayed when page is loaded
+    function getlikenum(){
+    var rid = $(".getlike").val();
+        $.ajax({
+            url :'includes/action.php',
+            method: "POST",
+            data    :   {likenum:1, recipe_id:rid},
+            success : function(data){
+            $("#get_LikeNum").html(data);
+            }
+        })
+    }
+    
+    //add 1 to recipeLikeNum in database
+    $("body").delegate(".getlike","click",function(event){
+        var rid = $(".getlike").val();
+        event.preventDefault();
+        $.ajax({
+            url     :   'includes/action.php',
+            method  :   "POST",
+            data    :   {add_like:1,recipe_id:rid},
+            success :   function(data){
+                $("#get_LikeNum").html(data);
+                
+            }
+        })
+    })
+    
+    //confirm shipping information
+    $("body").delegate(".confirm-btn","click",function(event){
+        var name = $(".name").val();
+        var address = $(".address").val();
+        var postcode = $(".postcode").val();
+        var number = $(".phone").val();
+        var email = $(".email").val();
+        var uid = $(".getUID").val();
+		event.preventDefault();
+        $.ajax({
+            url		:	'includes/action.php',
+			method	:	"POST",
+			data	:	{confirm:1,name:name,address:address, postcode:postcode, number:number, email:email, uid:uid},
+			success	:	function(data){
+            $("#getshipinfo").html(data);
+				if($("body").width() < 480){
+					$("body").scrollTop(683);
+				}
+            $(".confirm_info").hide();
+			}
+        })
+    })
+    
 })

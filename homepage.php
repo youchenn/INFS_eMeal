@@ -39,26 +39,6 @@
         });
         <?php }?>
     </script>
-<!--
-    <script>
-        $(document).ready(function(){
-            $(".add").click(function(){
-                var n=$(this).prev().val();
-                var num=parseInt(n)+1;
-                if(num==0){
-                    return;
-                }
-                $(this).prev().val(num);
-            });
-            $(".min").click(function(){
-                var n=$(this).next().val();
-                var num=parseInt(n)-1;
-                if(num==0){ return}
-                $(this).next().val(num);
-            });
-        });
-    </script>
--->
 </head>
 <body>
     <div id="navigation">

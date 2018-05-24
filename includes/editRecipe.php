@@ -4,13 +4,12 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
 
 if (isset($_POST["upload"])){
     include 'db.php';
-    
-    $nickname = $_SESSION['user'];
-    $query = "SELECT * FROM user WHERE userNickname = '$nickname'";
+    $recipeId = $_POST['recipeId'];
+    $query = "SELECT * FROM recipe WHERE recipeId = '$recipeId'";
     $result = mysqli_query($connect,$query);
     $row = mysqli_fetch_array($result);
-    $userid = $row['userId'];
-
+    $recipeimg = $row['img'];
+    
     $recipename = $_POST['recipename'];
     $date = date('Y-m-d');
     $size = $_POST['size'];
@@ -18,22 +17,22 @@ if (isset($_POST["upload"])){
     $purpose = $_POST['purpose'];
     $detail = $_POST['detail'];
     
-    if (empty($recipename)|| empty($detail)|| $_POST['size']=='NULL'|| $_POST['category']=='NULL'|| $_POST['purpose']=='NULL'|| empty($_FILES['imageUpload']['tmp_name'])){
+    if (empty($recipename)|| empty($detail)|| $_POST['size']=='NULL'|| $_POST['category']=='NULL'|| $_POST['purpose']=='NULL'){
         echo 'Empty inputs!';
         header("Refresh: 1; url=../recipeUpload.php");
         exit();  
-    }else{
+    }else if(!empty($_FILES['imageUpload']['tmp_name'])){
         $imagename = $_FILES['imageUpload']['name'];
         $imagetmpname = $_FILES['imageUpload']['tmp_name'];
         $target_folder = "../uploadImage/recipeUpload/";
         $path = "uploadImage/recipeUpload/".$imagename;
         move_uploaded_file($imagetmpname, $target_folder.$imagename);
-    
-        $sql = "INSERT INTO `recipe` (`recipeName`, `recipeTime`, `recipeContent`, `recipeCategory`, `recipeSize`, `userId`, `Purpose`, `img`) VALUES ('$recipename', '$date', '$detail', '$category', '$size', '$userid', '$purpose', '$path')";
-
-        mysqli_query($connect, $sql);
-        $recipeId = mysqli_insert_id($connect);
-        header("Location:../recipeinfo.php?recipe=$recipeId");
+    }else{
+        $path = $recipeimg;
     }
+    
+    $sql = "UPDATE `recipe` SET `recipeName` = '$recipename', `recipeTime` = '$date', `recipeContent` = '$detail', `recipeCategory` = '$category', `recipeSize` = '$size', `Purpose` = '$purpose', `img` = '$path' WHERE `recipe`.`recipeId` = '$recipeId'";
+    mysqli_query($connect, $sql);
+    header("Location:../recipeinfo.php?recipe=$recipeId");
 }
 ?>

@@ -221,7 +221,7 @@ error_reporting(0);
     </div>
     <?php }else if($_GET['size'])
     {?>
-            <div id="navigation">
+    <div id="navigation">
         <div id="title">
             <div class="addthis_inline_share_toolbox_20fu"></div>
             <p>e<span>MEAL</span></p>

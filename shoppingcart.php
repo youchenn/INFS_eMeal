@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION["userId"] = 1;
     $con = mysqli_connect("localhost","root","","emeal");
     if (isset($_GET["action"])){
         if ($_GET["action"] == "delete"){
@@ -29,6 +28,7 @@
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
     <script type="text/javascript">
         function fmoney(s, n) {
             n = n > 0 && n <= 20 ? n : 2;
@@ -41,7 +41,12 @@
             }
             return t.split("").reverse().join("") + "." + r;
             }
-        
+                <?php  if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){?>
+        $(document).ready(function(){
+            $("#sign").hide(); 
+            $("#user").show();
+        });
+        <?php }?>
         $(document).ready(function(){
             $(".add").click(function(){
                 var n=$(this).prev().val();
@@ -102,45 +107,18 @@
                 <li><a href="signup.php">Sign up</a></li>
             </ul>
             </div>
+        <div id="user">
+                <ul>
+                    <li>Welcome, <a><?php echo $_SESSION['user']?></a>
+                        <ul class="subnav2">
+                            <li><a href="userProfile.php">Profile</a></li>
+                            <li><a href="includes/logout.php">Log out</a></li>
+                        </ul>
+                    </li>                
+                </ul>
+            </div>
         </div>
-    <ul id="nav">
-            <li><a href="homepage.php">HOME</a>
-            <li><?php echo"<a href='recipegeneral.php?cate=all'>STYLE</a>"?>
-                <ul class="subnav">
-                   <?php 
-                        $sql = "SELECT * FROM category";
-                        $result = mysqli_query($con, $sql);
-                        while($row = mysqli_fetch_array($result)){
-                            echo '<li><a href="recipegeneral.php?cate='.$row["category"].'" name="categoryname" value=>' .$row["category"].'</a></li>';
-                        }
-                    ?>
-                </ul>
-            </li>
-            <li><?php echo"<a href='recipegeneral.php?pur=all'>PURPOSE</a>"?>
-                <ul class="subnav">
-                   <?php 
-                        $sql = "SELECT * FROM purpose";
-                        $result = mysqli_query($con, $sql);
-                        while($row = mysqli_fetch_array($result)){
-                            echo '<li><a href="recipegeneral.php?pur='.$row["purposeName"].'">' .$row["purposeName"].'</a></li>';
-                        }
-                    ?>
-                </ul>
-            </li>
-            <li><?php echo"<a href='recipegeneral.php?size=all'>SIZE</a>"?>
-                <ul class="subnav">
-                    <?php 
-                        $sql = "SELECT * FROM size";
-                        $result = mysqli_query($con, $sql);
-                        while($row = 
-                        mysqli_fetch_array($result)){
-                            echo '<li><a href="recipegeneral.php?size='.$row["sizeTitle"].'">' .$row["sizeTitle"].'</a></li>';   
-                        }
-                    ?>
-                </ul>
-            </li>
-            <li><a class="active" href="shoppinggeneral.php">SHOPPING</a></li>
-        </ul>
+        <div id="get_nav"></div>
         <div id="shoppingcart">
            <a href="shoppingcart.php">
             <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">

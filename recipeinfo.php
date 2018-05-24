@@ -81,17 +81,16 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
             <div class="row">
                 <div class="col-md-5">
                     <div class="img-wrapper">
-                        <img class="item-img" src="recipeimage/<?php echo $row["img"];?>" alt="recipeImg">
+                        <img class="item-img" src="<?php echo $row["img"];?>" alt="recipeImg">
+                        <input class="recipeID" type="hidden" name="hidden_id" value="<?php echo $row["recipeId"];?>">
+                        <input class="getUser" type="hidden" name="hidden_id" value="<?php echo $_SESSION['user']?>">
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="right_detail">
                         <h3 class="recipe_name"><?php echo $row["recipeName"]?></h3>
-                        <button class="like">
-                            <img class="like-img" src="img/Like.png">
-                            <i class="fa fa-thumbs-o-up"></i>Like <input class="count" name="like-count" readonly="readonly" type="text" value="0">
-                            <?php echo $row["recipeLikeNum"]?>
-                        </button>
+                        <input class="getlike" type="image" name="hidden_id" src="img/Like.png" value="<?php echo $row["recipeId"];?>">
+                        <div id="get_LikeNum"></div>
                         <table class="recipe_info">
                             <tr>
                                 <td>Author:</td>
@@ -138,26 +137,14 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                         <p><?php echo $row["recipeContent"]?></p>
                     </div>
                     <div class="tab-pane fade" id="reviews">
-                        <p>Nickname</p>
-                        <input class="login-input" onfocus="this.value=''" onblur="this.value='Please enter your nickname'" value="Please enter your nickname">
-                        <p>Comment:</p>
-                        <textarea onfocus="this value=''" onblur="this.value='Please leave your comment...'">Please leave your comment here ...</textarea>
-                        <input class="signup-submit" type="submit">
+                        <p>Comment</p>
+                        <textarea class="comment"></textarea>
+                        <input type="hidden" class="date" name="hidden_name" value="<?php date_default_timezone_set('Australia/Brisbane');
+                        echo date('Y-m-d');
+                        ?>">
+                        <button class="signup-submit commentSubmit">Submit</button>
                         <div class="comment_list">
-                            <div class="comment_box">
-                                <div class="comment_detail">
-                                    <p class="comment_name">John Doe</p>
-                                    <p class="comment_date">16 May, 2018</p>
-                                    <p class="comment_content">Good recipe!</p>
-                                </div>
-                            </div>
-                            <div class="comment_box">
-                                <div class="comment_detail">
-                                    <p class="comment_name">John Doe</p>
-                                    <p class="comment_date">16 May, 2018</p>
-                                    <p class="comment_content">Good recipe!</p>
-                                </div>
-                            </div>
+                            <div id="get_comment"></div>
                         </div>
                     </div>
                 </div>

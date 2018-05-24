@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 </head>
 <body>
 <div id="navigation">
@@ -19,32 +22,17 @@
             <p>e<span>MEAL</span></p>
             <div id="sign">
             <ul>
-                <li><a href="signup.html">Sign up</a></li>
+                <li><a href="signup.php">Sign up</a></li>
             </ul>
             </div>
         </div>
-        <ul id="nav">
-            <li><a href="homepage.php">HOME</a>
-            <li><a href="">STYLE</a>
-                <ul class="subnav">
-                    <li><a href="#">Western</a></li>
-                    <li><a href="#">Chinese</a></li>
-                    <li><a href="#">Japanese</a></li>
-                </ul>
-            </li>
-            <li><a href="">PURPOSE</a>
-                <ul class="subnav">
-                    <li><a href="#">Fitness</a></li>
-                    <li><a href="#">Meat lover</a></li>
-                    <li><a href="#">Vegetarian</a></li>
-                </ul>
-            </li>
-            <li><a href="">BOX SIZE</a></li>
-            <li><a href="">SHOPPING</a></li>
-        </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="get_nav"></div>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>
     </div>
         <div id="sign-page">
             <section class="background">
@@ -76,7 +64,7 @@
                                 <input class="login-submit" type="submit" value="Submit" name="submit"/>
                             </div>
                             <div class="col">
-                                <input class="login-submit" type="Reset" value="Back" />
+                                <input class="login-submit" type="Reset" value="Reset" />
                             </div>
                         </div>
                     </form>

@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 	// Check for empty fields
 	if (empty($email) || empty($nickname) || empty($pwd)) {
 		echo '<script>alert("Empty inputs...!")</script>';
-		header("Location: ../signup.html?signup=empty");
+		header("Location: ../signup.php?signup=empty");
 		exit();
 	} else {
 			// Check if input characters are valid
@@ -86,7 +86,7 @@ if (isset($_POST['submit'])) {
 
 							Please click this link to verify your account:
 
-							http://localhost/eMealv2/includes/verify.php?email='.$email.'&hash='.$hash;
+							http://localhost/eMeal/includes/verify.php?email='.$email.'&hash='.$hash;
 						
 						//set who is sending
 						$mail->setFrom('emealoperator@gmail.com','Admin');

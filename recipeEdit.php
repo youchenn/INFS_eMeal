@@ -1,6 +1,6 @@
 <?php
 session_start();
-$connect = mysqli_connect("localhost", "root", "", "emeal");  
+$connect = mysqli_connect("localhost", "root", "", "emeal"); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/main.js"></script>
     <script type="text/javascript">
        $(document).ready(function(){
            $("#user").hide();
@@ -50,7 +50,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
             <div id="sign">
                 <ul>
                     <li><a href="login.html">Sign in</a></li>
-                    <li><a href="signup.php">Sign up</a></li>
+                    <li><a href="signup.html">Sign up</a></li>
                 </ul>
             </div>
             <div id="user">
@@ -75,15 +75,41 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                 </ul>
             </div>
         </div>
-        <div id="get_nav"></div>
-        <div id="shoppingcart">
-           <a href="shoppingcart.php">
-            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
-            <p>Shopping cart</p>
-            </a>
-        </div>
-
+        <ul id="nav">
+            <li><a href="homepage.php">HOME</a>
+            <li><a href="">STYLE</a>
+                <ul class="subnav">
+                    <li><a href="#">Western</a></li>
+                    <li><a href="#">Chinese</a></li>
+                    <li><a href="#">Japanese</a></li>
+                </ul>
+            </li>
+            <li><a href="">PURPOSE</a>
+                <ul class="subnav">
+                    <li><a href="#">Fitness</a></li>
+                    <li><a href="#">Meat lover</a></li>
+                    <li><a href="#">Vegetarian</a></li>
+                </ul>
+            </li>
+            <li><a href="">BOX SIZE</a></li>
+            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
+        </ul>
+        <form id="search-form" method="post" >
+            <input type="text" placeholder="Search Here" />
+        </form>
     </div>
+    <form method="POST" action="includes/editRecipe.php" enctype="multipart/form-data">
+    <form method="post" action="recipeinfo.php?recipe=<?php echo $_GET['recipe'];?>">
+        <?php if(isset($_GET['recipe'])){
+        $sql = "SELECT * FROM recipe WHERE recipeId = '$_GET[recipe]'";
+        $result = mysqli_query($connect, $sql);
+        while($row=mysqli_fetch_array($result))
+        {
+            $size = $row["recipeSize"];
+            $category = $row["recipeCategory"];
+            $purpose = $row["Purpose"];
+            $detail = $row["recipeContent"];
+        ?>
     <div class="gray">
         <div class="tabbar">
             <ol class="breadcrumb">
@@ -91,17 +117,17 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                 <li class="active">Upload recipe</li>
             </ol>
         </div>
-        <form method="POST" action="includes/uploadRecipe.php" enctype="multipart/form-data">
         <div class="detail-page">
             <table class="upload-page">
                 <tr>
                     <td class="lefttab">Recipe Name:</td>
-                    <td><input class="info" type="text" name="recipename" placeholder="Enter your recipe name" onfocus="this placeholder=''" onblur="this.placeholder='Please enter a recipe name'"></td>
+                    <td><input class="info" type="text" name="recipename" value="<?php echo $row["recipeName"];?>">
+                    <input type="hidden" name="recipeId" value="<?php echo $row["recipeId"]?>"></td>
                 </tr>
                 <tr>
                     <td class="lefttab">Recipe picture:</td>
                     <td>
-                        <img id="recipeImg" src="img/icons8-plus-40.png" alt="recipe image" onclick="F_Open_file('imageUpload')">
+                        <img id="recipeImg" src="<?php echo $row["img"];?>" alt="recipe image" onclick="F_Open_file('imageUpload')">
                         <input id="imageUpload" type="file" accept="image/gif, image/jpeg, image/png" name="imageUpload" onchange="readURL(this);"></td>
                 </tr>
                 <tr>
@@ -125,8 +151,9 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                         <?php
                         $sql = "SELECT * FROM size";
                         $result = mysqli_query($connect, $sql);
-                        while ($row = mysqli_fetch_array($result)){
-                            echo "<option value='".$row["sizeTitle"]."'>".$row["sizeTitle"]."</option>";
+                        while ($row = mysqli_fetch_array($result)){if($row["sizeTitle"] == $size)
+                        {echo "<option value='".$row["sizeTitle"]."' selected>".$row["sizeTitle"]."</option>";}else{
+                            echo "<option value='".$row["sizeTitle"]."'>".$row["sizeTitle"]."</option>";}
                         }
                         ?>
                         </select></td>
@@ -138,8 +165,10 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                         <?php
                         $sql = "SELECT * FROM category";
                         $result = mysqli_query($connect, $sql);
-                        while ($row = mysqli_fetch_array($result)){
-                            echo "<option value='".$row["category"]."'>".$row["category"]."</option>";
+                        while ($row = mysqli_fetch_array($result)){if($row["category"] == $category){
+                            echo "<option value='".$row["category"]."' selected>".$row["category"]."</option>";
+                        }else{
+                            echo "<option value='".$row["category"]."'>".$row["category"]."</option>";}
                         }
                         ?>
                         </select></td>
@@ -151,22 +180,28 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                         <?php
                         $sql = "SELECT * FROM purpose";
                         $result = mysqli_query($connect, $sql);
-                        while ($row = mysqli_fetch_array($result)){
-                            echo "<option value='".$row["purposeName"]."'>".$row["purposeName"]."</option>";
+                        while ($row = mysqli_fetch_array($result)){if($row["purposeName"] == $purpose){
+                            echo "<option value='".$row["purposeName"]."' selected>".$row["purposeName"]."</option>";
+                        }else{
+                            echo "<option value='".$row["purposeName"]."'>".$row["purposeName"]."</option>";}
                         }
                         ?>
                         </select></td>
                 </tr>
                 <tr>
                     <td class="lefttab">Details:</td>
-                    <td><textarea class="up-recipe" name="detail" placeholder="Enter your recipe details here..." onfocus="this placeholder=''" onblur="this.placeholder='Please enter your recipe details'"></textarea></td>
+                    <td><textarea class="up-recipe" name="detail"><?php echo $detail;?></textarea></td>
                 </tr>
             </table>
             <input class="infosave" type="submit" value="Upload" name="upload">
         </div>
-        </form>
         <div class="clearfloat"></div>
     </div>
+        <?php
+        }
+        }?>
+    </form>
+    </form>
     <div id="footer">
             <p>&copy;2018 eMeal Company. All Rights Reserved</p>
         </div>

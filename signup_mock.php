@@ -45,37 +45,15 @@
         <div id="sign-page">
             <section class="background">
                 <div id="log_bg"></div>
+                <div class="signup_mock"> 
                 <div class="signup-card">
-                   <form action ="includes/signup.php" method="POST" onsubmit="return checkForm();" id="frm">
-                    <div class="container"> 
-                            <div class="row">
-                                <div class="col">
-                                    <p class="second-heading">Sign up</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                    <p class="third-heading">Email</p>
-                            </div>
-                            <div class="row">
-                                <input id="email" class="login-input" type="text" name="email" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your email address'">
-                            </div>
-                            <div class="row">
-                                    <p class="third-heading">Nickname</p>
-                            </div>
-                            <div class="row">
-                                <input id="nickname" class="login-input" type="text" name="nickname" placeholder="Nickname" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your nickname'">
-                            </div>
-                            <div class="row">
-                                    <p class="third-heading">Password</p>
-                            </div>
-                            <div class="row">
-                                <input id="password" class="login-input" type="password" name="pwd" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your password'">
-                            </div>
-                            <div class="row">
-                                    <button class="signup-submit" type="submit" name="submit">Sign up</button>
-                            </div>
+                    <div class="container">
+                           <div class="signup_mock"> 
+                           <input class="signupID" type="hidden" value="<?php echo $_GET["signup"]?>">
+                           <div id="get_signup"></div>                      
                         </div>
-                    </form>
+                    </div>
+                </div>
                 </div>
             </section>
         </div>
