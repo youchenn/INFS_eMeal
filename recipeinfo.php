@@ -1,8 +1,6 @@
 <?php
 session_start();
 $connect = mysqli_connect("localhost", "root", "", "emeal"); 
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,10 +15,8 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
     <script type="text/javascript">
-       $(document).ready(function(){
-           $("#user").hide();
-       });
         <?php  if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){?>
         $(document).ready(function(){
           $("#sign").hide(); 
@@ -45,54 +41,28 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
             <div id="sign">
                 <ul>
                     <li><a href="login.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="signup.php">Sign up</a></li>
                 </ul>
             </div>
             <div id="user">
                 <ul>
                     <li>
-                        <?php 
-                        $sql = "SELECT * FROM user";
-                        $result = mysqli_query($connect, $sql);
-                        while($row = 
-                        mysqli_fetch_array($result)){
-                        if($_SESSION['user']== $row['userEmail'])
-                            {
-                                $_SESSION['user']=$row['userNickname'];
-                            }
-                        }
-                        ?>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="userProfile.php">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
                 </ul>
             </div>
         </div>
-        <ul id="nav">
-            <li><a href="homepage.php">HOME</a>
-            <li><a href="">STYLE</a>
-                <ul class="subnav">
-                    <li><a href="#">Western</a></li>
-                    <li><a href="#">Chinese</a></li>
-                    <li><a href="#">Japanese</a></li>
-                </ul>
-            </li>
-            <li><a href="">PURPOSE</a>
-                <ul class="subnav">
-                    <li><a href="#">Fitness</a></li>
-                    <li><a href="#">Meat lover</a></li>
-                    <li><a href="#">Vegetarian</a></li>
-                </ul>
-            </li>
-            <li><a href="">BOX SIZE</a></li>
-            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
-        </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="get_nav"></div>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>  
     </div>
     <form method="post" action="recipeinfo.php?id=<?php echo $_GET['recipe'];?>">
         <?php if(isset($_GET['recipe'])){
@@ -103,7 +73,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
     <div class="gray">
         <div class="tabbar">
             <ol class="breadcrumb">
-                <li><a href="recipegeneral.html">Recipe</a></li>
+                <li><a href="recipegeneral.php?rec=all">Recipe</a></li>
                 <li class="active"><?php echo $row["recipeName"];?></li>
             </ol>
         </div>
@@ -144,6 +114,10 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                             <tr>
                                 <td>Style:</td>
                                 <td><?php echo $row["recipeCategory"]?></td>
+                            </tr>
+                            <tr>
+                                <td>Purpose:</td>
+                                <td><?php echo $row["Purpose"]?></td>
                             </tr>
                         </table>
                     </div>

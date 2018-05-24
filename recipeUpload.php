@@ -1,6 +1,5 @@
 <?php
 session_start();
-?>
 $connect = mysqli_connect("localhost", "root", "", "emeal");  
 ?>
 <!DOCTYPE html>
@@ -26,6 +25,8 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
             $("#user").show();
         });
         <?php }?>
+    </script>
+    <script>
         function F_Open_file(id){
             document.getElementById(id).click();
         }
@@ -90,7 +91,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                 </ul>
             </li>
             <li><a href="">BOX SIZE</a></li>
-            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
+            <li><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
         <form id="search-form" method="post" >
             <input type="text" placeholder="Search Here" />
@@ -99,46 +100,84 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
     <div class="gray">
         <div class="tabbar">
             <ol class="breadcrumb">
-                <li><a href="recipegeneral.html">Recipe</a></li>
+                <li><a href="userProfile.php">Profile</a></li>
                 <li class="active">Upload recipe</li>
             </ol>
         </div>
+        <form method="POST" action="includes/uploadRecipe.php" enctype="multipart/form-data">
         <div class="detail-page">
-            
             <table class="upload-page">
                 <tr>
                     <td class="lefttab">Recipe Name:</td>
-                    <td><input class="info" type="text"></td>
+                    <td><input class="info" type="text" name="recipename" placeholder="Enter your recipe name" onfocus="this placeholder=''" onblur="this.placeholder='Please enter a recipe name'"></td>
                 </tr>
                 <tr>
                     <td class="lefttab">Recipe picture:</td>
                     <td>
                         <img id="recipeImg" src="img/icons8-plus-40.png" alt="recipe image" onclick="F_Open_file('imageUpload')">
-                        <input id="imageUpload" type="file" onchange="readURL(this);"></td>
+                        <input id="imageUpload" type="file" accept="image/gif, image/jpeg, image/png" name="imageUpload" onchange="readURL(this);"></td>
                 </tr>
                 <tr>
                     <td class="lefttab">Author:</td>
-                    <td><input class="info" type="text"></td>
+                    <td><div class="info">
+                        <?php echo $_SESSION['user']?>
+                        </div></td>
                 </tr>
                 <tr>
                     <td class="lefttab">Date:</td>
-                    <td><input class="info" type="date"></td>
+                    <td><div class="info">
+                        <?php date_default_timezone_set('Australia/Brisbane');
+                        echo date('Y-m-d');
+                        ?>
+                        </div></td>
                 </tr>
                 <tr>
                     <td class="lefttab">Size:</td>
-                    <td><input class="info" type="text"></td>
+                    <td><select name="size" class="info">
+                        <option value="NULL">-- Please select --</option>
+                        <?php
+                        $sql = "SELECT * FROM size";
+                        $result = mysqli_query($connect, $sql);
+                        while ($row = mysqli_fetch_array($result)){
+                            echo "<option value='".$row["sizeTitle"]."'>".$row["sizeTitle"]."</option>";
+                        }
+                        ?>
+                        </select></td>
                 </tr>
                 <tr>
-                    <td class="lefttab">Style:</td>
-                    <td><input class="info" type="text"></td>
+                    <td class="lefttab">Category:</td>
+                    <td><select name="category" class="info">
+                        <option value="NULL">-- Please select --</option>
+                        <?php
+                        $sql = "SELECT * FROM category";
+                        $result = mysqli_query($connect, $sql);
+                        while ($row = mysqli_fetch_array($result)){
+                            echo "<option value='".$row["category"]."'>".$row["category"]."</option>";
+                        }
+                        ?>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td class="lefttab">Purpose:</td>
+                    <td><select name="purpose" class="info">
+                        <option value="NULL">-- Please select --</option>
+                        <?php
+                        $sql = "SELECT * FROM purpose";
+                        $result = mysqli_query($connect, $sql);
+                        while ($row = mysqli_fetch_array($result)){
+                            echo "<option value='".$row["purposeName"]."'>".$row["purposeName"]."</option>";
+                        }
+                        ?>
+                        </select></td>
                 </tr>
                 <tr>
                     <td class="lefttab">Details:</td>
-                    <td><textarea class="up-recipe" onfocus="this value=''" onblur="this.value='Please enter your recipe details'">Please enter your recipe details ...</textarea></td>
+                    <td><textarea class="up-recipe" name="detail" placeholder="Enter your recipe details here..." onfocus="this placeholder=''" onblur="this.placeholder='Please enter your recipe details'"></textarea></td>
                 </tr>
             </table>
-            <button class="infosave" type="submit">Upload</button>
+            <input class="infosave" type="submit" value="Upload" name="submit">
         </div>
+        </form>
         <div class="clearfloat"></div>
     </div>
     <div id="footer">

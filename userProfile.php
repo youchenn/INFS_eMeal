@@ -1,7 +1,22 @@
 <?php
+include "includes/db.php";
 session_start();
-?>
 $connect = mysqli_connect("localhost", "root", "", "emeal");  
+
+$nickname = $_SESSION['user'];
+$query = "SELECT * FROM user WHERE userNickname = '$nickname'";
+$result = mysqli_query($connect,$query);
+$row = mysqli_fetch_array($result);
+
+$gender = $row['userGender'];
+$dob = $row['userDob'];
+$email = $row['userEmail'];
+$contact = $row['userContact'];
+$address = $row['userAddress'];
+$postalcode = $row['userPostalcode'];
+$state = $row['userState'];
+$ccupation = $row['userOccupation'];
+$profileimg = $row['userProfilepic'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,11 +29,10 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
-    <script src="jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
     <script type="text/javascript">
-       $(document).ready(function(){
-           $("#user").hide();
-       });
         <?php  if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){?>
         $(document).ready(function(){
           $("#sign").hide(); 
@@ -35,22 +49,12 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
             <div id="sign">
                 <ul>
                     <li><a href="login.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="signup.php">Sign up</a></li>
                 </ul>
             </div>
             <div id="user">
                 <ul>
                     <li>
-                        <?php 
-                        $sql = "SELECT * FROM user";
-                        $result = mysqli_query($connect, $sql);
-                        while($row = mysqli_fetch_array($result)){
-                        if($_SESSION['user']== $row['userEmail'])
-                            {
-                                $_SESSION['user']=$row['userNickname'];
-                            }
-                        }
-                        ?>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
                                 <li><a href="userProfile.php">Profile</a></li>
@@ -60,34 +64,19 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                 </ul>
             </div>
         </div>
-        <ul id="nav">
-            <li><a href="homepage.php">HOME</a>
-            <li><a href="">STYLE</a>
-                <ul class="subnav">
-                    <li><a href="#">Western</a></li>
-                    <li><a href="#">Chinese</a></li>
-                    <li><a href="#">Japanese</a></li>
-                </ul>
-            </li>
-            <li><a href="">PURPOSE</a>
-                <ul class="subnav">
-                    <li><a href="#">Fitness</a></li>
-                    <li><a href="#">Meat lover</a></li>
-                    <li><a href="#">Vegetarian</a></li>
-                </ul>
-            </li>
-            <li><a href="">BOX SIZE</a></li>
-            <li><a href="shoppinggeneral.html">SHOPPING</a></li>
-        </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="get_nav"></div>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>
     </div>
     <div class="clearfloat"></div>
     <div class="gray">
         <div class="tabbar">
             <ol class="breadcrumb">
-                <li ><a href="recipegeneral.html">Profile</a></li>
+                <li ><a href="userProfile.php">Profile</a></li>
                 <li class="active">Personal profile</li>
             </ol>
         </div>
@@ -96,7 +85,7 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                     <div class="col-md-2">
                         <div class="profile-menu">
                             <div class="leftprofile">
-                                <img src="img/profile-picture.png">
+                                <img src="<?php echo $profileimg;?>" alt="profile image">
                             </div>
                             <div class="accounttab">
                                 <p><a class="accountp" href="userProfile.php">Personal Profile</a></p>
@@ -111,38 +100,41 @@ $connect = mysqli_connect("localhost", "root", "", "emeal");
                             <table class="showinfo">
                                 <tr>
                                     <td>Nick name:</td>
-                                    <td>Annie</td>
+                                    <td><?php echo $_SESSION['user'];
+                                    ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Gender:</td>
-                                    <td>Female</td>
+                                    <td><?php echo $gender;?></td>
                                 </tr>
                                 <tr>
                                     <td>Date of birth:</td>
-                                    <td>11/05/2000</td>
+                                    <td><?php echo $dob;?></td>
                                 </tr>
                                 <tr>
-                                    <td>Email:</td><td>Annie@gmail.com</td>
+                                    <td>Email:</td>
+                                    <td><?php echo $email;?></td>
                                 </tr>
                                 <tr>
                                     <td>Contact:</td>
-                                    <td>0123456789</td>
+                                    <td><?php echo $contact;?></td>
                                 </tr>
                                 <tr>
                                     <td>Address:</td>
-                                    <td></td>
+                                    <td><?php echo $address;?></td>
                                 </tr>
                                 <tr>
                                     <td>Postal code:</td>
-                                    <td></td>
+                                    <td><?php echo $postalcode;?></td>
                                 </tr>
                                 <tr>
                                     <td>State:</td>
-                                    <td></td>
+                                    <td><?php echo $state;?></td>
                                 </tr>
                                 <tr>
                                     <td>Occupation:</td>
-                                    <td>Student</td>
+                                    <td><?php echo $ccupation;?></td>
                                 </tr>
                             </table>
                         </div>

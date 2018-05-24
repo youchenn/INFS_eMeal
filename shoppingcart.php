@@ -99,28 +99,47 @@
             <div id="sign">
             <ul>
                 <li><a href="login.html">Sign in</a></li>
-                <li><a href="#">Sign up</a></li>
+                <li><a href="signup.php">Sign up</a></li>
             </ul>
             </div>
         </div>
-        <ul id="nav">
+    <ul id="nav">
             <li><a href="homepage.php">HOME</a>
-            <li><a href="">STYLE</a>
+            <li><?php echo"<a href='recipegeneral.php?cate=all'>STYLE</a>"?>
                 <ul class="subnav">
-                    <li><a href="#">Western</a></li>
-                    <li><a href="#">Chinese</a></li>
-                    <li><a href="#">Japanese</a></li>
+                   <?php 
+                        $sql = "SELECT * FROM category";
+                        $result = mysqli_query($con, $sql);
+                        while($row = mysqli_fetch_array($result)){
+                            echo '<li><a href="recipegeneral.php?cate='.$row["category"].'" name="categoryname" value=>' .$row["category"].'</a></li>';
+                        }
+                    ?>
                 </ul>
             </li>
-            <li><a href="">PURPOSE</a>
+            <li><?php echo"<a href='recipegeneral.php?pur=all'>PURPOSE</a>"?>
                 <ul class="subnav">
-                    <li><a href="#">Fitness</a></li>
-                    <li><a href="#">Meat lover</a></li>
-                    <li><a href="#">Vegetarian</a></li>
+                   <?php 
+                        $sql = "SELECT * FROM purpose";
+                        $result = mysqli_query($con, $sql);
+                        while($row = mysqli_fetch_array($result)){
+                            echo '<li><a href="recipegeneral.php?pur='.$row["purposeName"].'">' .$row["purposeName"].'</a></li>';
+                        }
+                    ?>
                 </ul>
             </li>
-            <li><a href="">BOX SIZE</a></li>
-            <li class="active"><a href="shoppinggeneral.php">SHOPPING</a></li>
+            <li><?php echo"<a href='recipegeneral.php?size=all'>SIZE</a>"?>
+                <ul class="subnav">
+                    <?php 
+                        $sql = "SELECT * FROM size";
+                        $result = mysqli_query($con, $sql);
+                        while($row = 
+                        mysqli_fetch_array($result)){
+                            echo '<li><a href="recipegeneral.php?size='.$row["sizeTitle"].'">' .$row["sizeTitle"].'</a></li>';   
+                        }
+                    ?>
+                </ul>
+            </li>
+            <li><a class="active" href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
         <div id="shoppingcart">
            <a href="shoppingcart.php">

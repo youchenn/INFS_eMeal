@@ -42,7 +42,7 @@ if(isset($_POST["getProduct"])){
 //load the product review
 if(isset($_POST["getProductReview"])){
     $pid = $_POST['review_id'];
-    $productReview_query = "SELECT * FROM productReview a, user b WHERE a.userId = b.userId AND a.productId = $pid";
+    $productReview_query = "SELECT * FROM productReview a, user b WHERE a.userId = b.userId AND a.productId = $pid ORDER BY pReviewId DESC";
     $run_query = mysqli_query($conn,$productReview_query);
     if(mysqli_num_rows($run_query) > 0){
        while($row = mysqli_fetch_array($run_query)){
@@ -125,7 +125,7 @@ if(isset($_POST["add_review"])){
     }
     $insert_sql = "INSERT INTO `productReview` (`reviewComment`, `productId`, `userId`, `reviewTime`) VALUES ('$review', '$pid', '$uid', '$date')";
     $insert_result = mysqli_query($conn, $insert_sql);
-    $productReview_query = "SELECT * FROM productReview a, user b WHERE a.userId = b.userId AND a.productId = $pid";
+    $productReview_query = "SELECT * FROM productReview a, user b WHERE a.userId = b.userId AND a.productId = $pid ORDER BY pReviewId DESC";
     $run_query2 = mysqli_query($conn,$productReview_query);
     if(mysqli_num_rows($run_query2) > 0){
        while($row = mysqli_fetch_array($run_query2)){

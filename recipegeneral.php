@@ -15,12 +15,8 @@ error_reporting(0);
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab88174f9a49214"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script type="text/javascript" src="js/banner.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
-       $(document).ready(function(){
-           $("#user").hide();
-       });
         <?php  if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){?>
         $(document).ready(function(){
           $("#sign").hide(); 
@@ -30,7 +26,7 @@ error_reporting(0);
     </script>
 </head>
 <body>
-       <?php if($_GET['cate'])
+       <?php if($_GET['cate'] || $_GET['rec'])
             {?>
     <div id="navigation">
         <div id="title">
@@ -39,7 +35,7 @@ error_reporting(0);
             <div id="sign">
                 <ul>
                     <li><a href="login.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="signup.php">Sign up</a></li>
                 </ul>
             </div>
             <div id="user">
@@ -47,7 +43,7 @@ error_reporting(0);
                     <li>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="userProfile.php">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
@@ -92,9 +88,12 @@ error_reporting(0);
             </li>
             <li><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>
     </div>
     <div class="gray">
         <div class="tabbar">
@@ -106,7 +105,7 @@ error_reporting(0);
             </ol>
         </div>
         <?php 
-            if($_GET[cate]=='all'){
+            if($_GET[cate]=='all' || $_GET[rec]=='all'){
                 $sql = "SELECT * FROM recipe";
             }
             else{
@@ -118,7 +117,7 @@ error_reporting(0);
             <div class="recipe-box">
                 <img class="recipe-img" src="<?php echo $row["img"]?>" alt="">
                 <p class="recipe-brief"><?php echo $row["recipeName"]?></p>
-                <a class="recipe-btn" href="#">More</a>
+                <a class="recipe-btn" href="recipeinfo.php?recipe=<?php echo $row["recipeId"]?>">More</a>
             </div>
         </div>
         <?php }?>
@@ -133,7 +132,7 @@ error_reporting(0);
             <div id="sign">
                 <ul>
                     <li><a href="login.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="signup.php">Sign up</a></li>
                 </ul>
             </div>
             <div id="user">
@@ -141,7 +140,7 @@ error_reporting(0);
                     <li>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="userProfile.php">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
@@ -186,9 +185,12 @@ error_reporting(0);
             </li>
             <li><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>
     </div>
     <div class="gray">
         <div class="tabbar">
@@ -211,7 +213,7 @@ error_reporting(0);
             <div class="recipe-box">
                 <a><img class="recipe-img" src="<?php echo $row["img"]?>" alt=""></a>
                 <p class="recipe-brief"><?php echo $row["recipeName"]?></p>
-                <a class="recipe-btn" href="#">More</a>
+                <a class="recipe-btn" href="recipeinfo.php?recipe=<?php echo $row["recipeId"]?>">More</a>
             </div>
         </div>
         <?php }?>
@@ -226,7 +228,7 @@ error_reporting(0);
             <div id="sign">
                 <ul>
                     <li><a href="login.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="signup.php">Sign up</a></li>
                 </ul>
             </div>
             <div id="user">
@@ -234,7 +236,7 @@ error_reporting(0);
                     <li>
                         Welcome, <a><?php echo $_SESSION['user']?></a>
                             <ul class="subnav2">
-                                <li><a href="userProfile.html">Profile</a></li>
+                                <li><a href="userProfile.php">Profile</a></li>
                                 <li><a href="includes/logout.php">Log out</a></li>
                             </ul>
                     </li>                
@@ -279,9 +281,12 @@ error_reporting(0);
             </li>
             <li><a href="shoppinggeneral.php">SHOPPING</a></li>
         </ul>
-        <form id="search-form" method="post" >
-            <input type="text" placeholder="Search Here" />
-        </form>
+        <div id="shoppingcart">
+           <a href="shoppingcart.php">
+            <img src="img/713b83a7ab70e1a79d66d49efc33aff6.png">
+            <p>Shopping cart</p>
+            </a>
+        </div>
     </div>
     <div class="gray">
         <div class="tabbar">
@@ -304,7 +309,7 @@ error_reporting(0);
             <div class="recipe-box">
                 <img class="recipe-img" src="<?php echo $row["img"]?>" alt="">
                 <p class="recipe-brief"><?php echo $row["recipeName"]?></p>
-                <a class="recipe-btn" href="#">More</a>
+                <a class="recipe-btn" href="recipeinfo.php?recipe=<?php echo $row["recipeId"]?>">More</a>
             </div>
         </div>
         <?php }?>

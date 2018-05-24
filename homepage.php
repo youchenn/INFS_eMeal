@@ -1,15 +1,20 @@
 <?php
     include "includes/db.php";
     session_start();
+    if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){
+    echo "Login successfully " .$_SESSION['user'];
     $con = mysqli_connect("localhost","root","","emeal");
     $sql = "SELECT * FROM user";
     $result = mysqli_query($con, $sql);
-        while($row = mysqli_fetch_array($result)){
-            if($_SESSION['user']== $row['userEmail'])
-            {
-                $_SESSION['user']=$row['userNickname'];
-            }
+    while($row = mysqli_fetch_array($result)){
+        if($_SESSION['user']== $row['userEmail'])
+        {
+            $_SESSION['user']=$row['userNickname'];
         }
+    }
+    }else{
+        echo "Login failed";
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,15 +67,15 @@
             <p>e<span>MEAL</span></p>
             <div id="sign">
             <ul>
-                <li><a href="#">Sign in</a></li>
-                <li><a href="#">Sign up</a></li>
+                <li><a href="login.html">Sign in</a></li>
+                <li><a href="signup.php">Sign up</a></li>
             </ul>
             </div>
             <div id="user">
                 <ul>
                     <li>Welcome, <a><?php echo $_SESSION['user']?></a>
                         <ul class="subnav2">
-                            <li><a href="userProfile.html">Profile</a></li>
+                            <li><a href="userProfile.php">Profile</a></li>
                             <li><a href="includes/logout.php">Log out</a></li>
                         </ul>
                     </li>                
